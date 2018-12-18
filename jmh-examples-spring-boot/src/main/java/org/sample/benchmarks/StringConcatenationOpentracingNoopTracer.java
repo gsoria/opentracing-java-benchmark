@@ -4,9 +4,10 @@ import io.opentracing.Tracer;
 import io.opentracing.noop.NoopTracerFactory;
 import org.openjdk.jmh.annotations.*;
 import org.sample.benchmarks.service.StringConcatenationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.sample.benchmarks.service.impl.StringConcatenationServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication(scanBasePackages = "org.sample.benchmarks")
 public class StringConcatenationOpentracingNoopTracer {
@@ -19,9 +20,8 @@ public class StringConcatenationOpentracingNoopTracer {
 
     @State(Scope.Thread)
     public static class StateVariables {
-
-        @Autowired
-        StringConcatenationService service;
+        StringConcatenationService service1;
+        StringConcatenationService service2;
 
         String a = "Hello ";
         String b = "world";
@@ -30,40 +30,35 @@ public class StringConcatenationOpentracingNoopTracer {
         //is passed to the benchmark method.
         @Setup(Level.Trial)
         public void doSetup() {
-            System.out.println("Do Setup");
-            SpringApplication.run(StringConcatenationOpentracingNoopTracer .class);
+            ApplicationContext c = SpringApplication.run(StringConcatenationOpentracingNoopTracer.class);
+            service1 = c.getBean(StringConcatenationServiceImpl.class);
         }
 
         //Tells JMH that this method should be called to clean up ("tear down") the state
         //object after the benchmark has been execute
         @TearDown(Level.Trial)
         public void doTearDown() {
-            System.out.println("Do TearDown");
+
         }
 
         //https://github.com/opentracing/opentracing-java/tree/master/opentracing-noop
         Tracer tracer = NoopTracerFactory.create();
     }
 
+
     @Benchmark
     public void testPlusConcatenation(StateVariables state) {
-        io.opentracing.Scope scope = state.tracer.buildSpan("testPlusConcatenation").startActive(true);
-        state.service.testPlusConcatenation(state.a, state.b);
-        scope.span().log("testPlusConcatenation");
+        String out = state.service1.testPlusConcatenation("a","b");
     }
 
     @Benchmark
     public void testStringConcatenationStringBuilder(StateVariables state) {
-        io.opentracing.Scope scope = state.tracer.buildSpan("testStringConcatenationStringBuilder").startActive(true);
-        state.service.testStringConcatenationStringBuilder(state.a, state.b);
-        scope.span().log("testStringConcatenationStringBuilder");
+        String out = state.service1.testStringConcatenationStringBuilder("a","b");
     }
 
     @Benchmark
     public void testStringConcatenationStringBuffer(StateVariables state) {
-        io.opentracing.Scope scope = state.tracer.buildSpan("testStringConcatenationStringBuffer").startActive(true);
-        state.service.testStringConcatenationStringBuffer(state.a, state.b);
-        scope.span().log("testStringConcatenationStringBuffer");
+        String out = state.service1.testStringConcatenationStringBuffer("a","b");
     }
 }
 

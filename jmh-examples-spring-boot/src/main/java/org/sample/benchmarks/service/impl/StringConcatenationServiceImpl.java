@@ -1,10 +1,17 @@
 package org.sample.benchmarks.service.impl;
 
+import io.opentracing.Tracer;
 import org.sample.benchmarks.service.StringConcatenationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StringConcatenationServiceImpl implements StringConcatenationService {
+
+    @Autowired
+    @Qualifier("mockTracer")
+    public Tracer tracer;
 
     @Override
     public String testPlusConcatenation(String a, String b) {

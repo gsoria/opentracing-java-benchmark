@@ -56,6 +56,11 @@
 			<artifactId>opentracing-noop</artifactId>
 			<version>${opentracing.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.opentracing</groupId>
+			<artifactId>opentracing-mock</artifactId>
+			<version>${opentracing.version}</version>
+		</dependency>
 		<!-- Spring boot-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

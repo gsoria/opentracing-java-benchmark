@@ -1,11 +1,12 @@
 package org.sample.benchmarks;
 
+import io.jaegertracing.Configuration;
 import io.opentracing.Tracer;
 import io.opentracing.mock.MockTracer;
-import io.opentracing.noop.NoopTracerFactory;
+import io.jaegertracing.internal.samplers.ConstSampler;
 import org.openjdk.jmh.annotations.*;
 
-public class StringConcatenationOpentracingMockTracer {
+public class StringConcatenationOpentracingJaegerTracer {
 
     /*
     Sometimes you way want to initialize some variables that your benchmark code needs,
@@ -18,10 +19,20 @@ public class StringConcatenationOpentracingMockTracer {
         String a = "Hello ";
         String b = "world";
 
-        //https://github.com/opentracing/opentracing-java/tree/master/opentracing-mock
-        MockTracer tracer = new MockTracer();
-        //Tell JMH that this method should be called to setup the state object before it
-        //is passed to the benchmark method.
+
+        Configuration.SamplerConfiguration samplerConfig = Configuration.SamplerConfiguration.fromEnv()
+                .withType(ConstSampler.TYPE)
+                .withParam(1);
+
+        Configuration.ReporterConfiguration reporterConfig = Configuration.ReporterConfiguration.fromEnv()
+                .withLogSpans(true);
+
+        Configuration config = new Configuration("StringConcatenationOpentracingJaegerTracer")
+                .withSampler(samplerConfig)
+                .withReporter(reporterConfig);
+
+        Tracer tracer =  config.getTracer();
+
         @Setup(Level.Iteration)
         public void doSetup() {
 
@@ -32,7 +43,6 @@ public class StringConcatenationOpentracingMockTracer {
         @TearDown(Level.Iteration)
         public void doTearDown() {
             System.out.println("Do TearDown");
-            tracer.reset();
         }
     }
 

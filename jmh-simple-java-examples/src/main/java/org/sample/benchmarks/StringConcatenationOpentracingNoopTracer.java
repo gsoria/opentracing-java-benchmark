@@ -25,25 +25,28 @@ public class StringConcatenationOpentracingNoopTracer {
 
     @Benchmark
     public void testPlusConcatenation(StateVariables state) {
-        io.opentracing.Scope scope = state.tracer.buildSpan("testPlusConcatenation").startActive(true);
-        String c = state.a + state.b;
-        scope.span().log("testPlusConcatenation");
+        try (io.opentracing.Scope scope = state.tracer.buildSpan("testPlusConcatenation").startActive(true)) {
+            String c = state.a + state.b;
+            scope.span().log("testPlusConcatenation");
+        }
     }
 
     @Benchmark
     public void testStringConcatenationStringBuilder(StateVariables state) {
-        io.opentracing.Scope scope = state.tracer.buildSpan("testStringConcatenationStringBuilder").startActive(true);
-        StringBuilder sb = new StringBuilder();
-        sb.append(state.a).append(state.b).toString();
-        scope.span().log("testStringConcatenationStringBuilder");
+        try (io.opentracing.Scope scope = state.tracer.buildSpan("testStringConcatenationStringBuilder").startActive(true)) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(state.a).append(state.b).toString();
+            scope.span().log("testStringConcatenationStringBuilder");
+        }
     }
 
     @Benchmark
     public void testStringConcatenationStringBuffer(StateVariables state) {
-        io.opentracing.Scope scope = state.tracer.buildSpan("testStringConcatenationStringBuffer").startActive(true);
-        StringBuffer sb = new StringBuffer();
-        sb.append(state.a).append(state.b).toString();
-        scope.span().log("testStringConcatenationStringBuffer");
+        try (io.opentracing.Scope scope = state.tracer.buildSpan("testStringConcatenationStringBuffer").startActive(true)) {
+            StringBuffer sb = new StringBuffer();
+            sb.append(state.a).append(state.b).toString();
+            scope.span().log("testStringConcatenationStringBuffer");
+        }
     }
 }
 

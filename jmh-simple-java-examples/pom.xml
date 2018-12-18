@@ -72,6 +72,11 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <artifactId>opentracing-mock</artifactId>
             <version>${opentracing.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.jaegertracing</groupId>
+            <artifactId>jaeger-client</artifactId>
+            <version>${jaeger.version}</version>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -95,6 +100,10 @@ THE POSSIBILITY OF SUCH DAMAGE.
             Opentracing version
           -->
         <opentracing.version>0.31.0</opentracing.version>
+        <!--
+            Opentracing version
+          -->
+        <jaeger.version>0.31.0</jaeger.version>
 
     </properties>
 

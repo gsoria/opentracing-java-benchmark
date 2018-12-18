@@ -8,6 +8,7 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.sample.benchmarks.StringConcatenation;
+import org.sample.benchmarks.StringConcatenationOpentracingJaegerTracer;
 import org.sample.benchmarks.StringConcatenationOpentracingMockTracer;
 import org.sample.benchmarks.StringConcatenationOpentracingNoopTracer;
 
@@ -17,13 +18,14 @@ import java.time.format.DateTimeFormatter;
 public class Main {
     public static void main(String[] args) {
 
-        ResultFormatType resultsFileOutputType = ResultFormatType.JSON;
+        ResultFormatType resultsFileOutputType = ResultFormatType.CSV;
         String resultFilePrefix = "jmh-";
 
         Options opt = new OptionsBuilder()
                 .include(StringConcatenation.class.getSimpleName())
                 .include(StringConcatenationOpentracingNoopTracer.class.getSimpleName())
                 .include(StringConcatenationOpentracingMockTracer.class.getSimpleName())
+                .include(StringConcatenationOpentracingJaegerTracer.class.getSimpleName())
                 .warmupIterations(5)
                 .measurementIterations(5)
                 .forks(1)
@@ -43,7 +45,7 @@ public class Main {
 
     private static String buildResultsFileName(String resultFilePrefix, ResultFormatType resultType) {
         LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yyyy-hh-mm-ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
 
         String suffix;
         switch (resultType) {

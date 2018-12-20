@@ -30,7 +30,7 @@
             Opentracing version
           -->
 		<opentracing.version>0.31.0</opentracing.version>
-		<spring.boot.mainclass>org.sample.benchmarks.StringConcatenationOpentracingNoopTracer</spring.boot.mainclass>
+		<spring.boot.mainclass>org.sample.benchmarks.BenchmarkStringConcatenation</spring.boot.mainclass>
 
 	</properties>
 	<dependencies>
@@ -79,9 +79,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<compilerVersion>${javac.target}</compilerVersion>
-					<source>${javac.target}</source>
-					<target>${javac.target}</target>
+					<compilerVersion>${java.version}</compilerVersion>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>

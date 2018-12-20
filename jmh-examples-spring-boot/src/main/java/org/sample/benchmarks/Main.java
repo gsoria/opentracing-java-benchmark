@@ -45,7 +45,7 @@ public class Main {
 
     private static String buildResultsFileName(String resultFilePrefix, ResultFormatType resultType) {
         LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yyyy-hh-mm-ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
 
         String suffix;
         switch (resultType) {
@@ -66,6 +66,6 @@ public class Main {
 
         }
 
-        return String.format("target/%s%s%s", resultFilePrefix, date.format(formatter), suffix);
+        return String.format("results/%s%s%s", resultFilePrefix, date.format(formatter), suffix);
     }
 }

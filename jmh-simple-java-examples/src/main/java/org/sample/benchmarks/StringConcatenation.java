@@ -19,20 +19,20 @@ public class StringConcatenation {
     }
 
     @Benchmark
-    public void testPlusConcatenation(StateVariables state) {
-        String c = state.a + state.b;
+    public String testPlusConcatenation(StateVariables state) {
+        return state.a + state.b;
     }
 
     @Benchmark
-    public void testStringConcatenationStringBuilder(StateVariables state) {
+    public String testStringConcatenationStringBuilder(StateVariables state) {
         StringBuilder sb = new StringBuilder();
-        sb.append(state.a).append(state.b).toString();
+        return sb.append(state.a).append(state.b).toString();
     }
 
     @Benchmark
-    public void testStringConcatenationStringBuffer(StateVariables state) {
+    public String testStringConcatenationStringBuffer(StateVariables state) {
         StringBuffer sb = new StringBuffer();
-        sb.append(state.a).append(state.b).toString();
+        return sb.append(state.a).append(state.b).toString();
     }
 }
 

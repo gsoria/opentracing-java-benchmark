@@ -21,7 +21,7 @@ public class Main {
         int iterations = Integer.parseInt(properties.getProperty("benchmark.test.iterations", "5"));
         int forks = Integer.parseInt(properties.getProperty("benchmark.test.forks", "1"));
         int threads = Integer.parseInt(properties.getProperty("benchmark.test.threads", "1"));
-        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*Benchmark.*");
+        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*BenchmarkBilling.*");
         String resultFilePrefix = properties.getProperty("benchmark.global.resultfileprefix", "jmh-");
 
         ResultFormatType resultsFileOutputType = ResultFormatType.JSON;

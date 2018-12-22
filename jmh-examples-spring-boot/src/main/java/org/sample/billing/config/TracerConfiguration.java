@@ -1,4 +1,4 @@
-package org.sample.benchmarks.factory;
+package org.sample.billing.config;
 
 import io.opentracing.Tracer;
 import io.opentracing.mock.MockTracer;

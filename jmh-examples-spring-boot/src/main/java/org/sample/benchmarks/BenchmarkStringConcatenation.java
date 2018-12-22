@@ -1,10 +1,10 @@
 package org.sample.benchmarks;
 
 import org.openjdk.jmh.annotations.*;
-import org.sample.benchmarks.service.StringConcatenationService;
-import org.sample.benchmarks.service.impl.StringConcatenationMockTracerServiceImpl;
-import org.sample.benchmarks.service.impl.StringConcatenationNoopTracerServiceImpl;
-import org.sample.benchmarks.service.impl.StringConcatenationServiceImpl;
+import org.sample.stringconcatenation.service.StringConcatenationService;
+import org.sample.stringconcatenation.service.impl.StringConcatenationMockTracerServiceImpl;
+import org.sample.stringconcatenation.service.impl.StringConcatenationNoopTracerServiceImpl;
+import org.sample.stringconcatenation.service.impl.StringConcatenationServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

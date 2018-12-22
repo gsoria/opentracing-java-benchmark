@@ -1,4 +1,4 @@
-package org.sample.benchmarks.service;
+package org.sample.stringconcatenation.service;
 
 public interface StringConcatenationService {
     String testPlusConcatenation(String a, String b);

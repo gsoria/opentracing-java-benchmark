@@ -1,17 +1,16 @@
-package org.sample.benchmarks.service.impl;
+package org.sample.stringconcatenation.service.impl;
 
 import io.opentracing.Tracer;
-import io.opentracing.mock.MockTracer;
-import org.sample.benchmarks.service.StringConcatenationService;
+import org.sample.stringconcatenation.service.StringConcatenationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StringConcatenationMockTracerServiceImpl implements StringConcatenationService {
+public class StringConcatenationNoopTracerServiceImpl implements StringConcatenationService {
 
     @Autowired
-    @Qualifier("mockTracer")
+    @Qualifier("noopTracer")
     public Tracer tracer;
 
     @Override
@@ -41,10 +40,5 @@ public class StringConcatenationMockTracerServiceImpl implements StringConcatena
             scope.span().log("testStringConcatenationStringBuffer");
             return c;
         }
-    }
-
-    public void resetTracer(){
-        MockTracer tracer = (MockTracer)this.tracer;
-        tracer.reset();
     }
 }

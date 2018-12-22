@@ -1,6 +1,6 @@
-package org.sample.benchmarks.service.impl;
+package org.sample.stringconcatenation.service.impl;
 
-import org.sample.benchmarks.service.StringConcatenationService;
+import org.sample.stringconcatenation.service.StringConcatenationService;
 import org.springframework.stereotype.Service;
 
 @Service

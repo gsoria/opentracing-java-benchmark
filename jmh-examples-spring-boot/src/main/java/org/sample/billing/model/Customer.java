@@ -2,6 +2,7 @@ package org.sample.billing.model;
 
 public class Customer {
 
+    private String taxId;
     private String name;
     private String lastName;
     private String email;
@@ -39,10 +40,20 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Customer(String name, String lastName, String email, String phoneNumber){
-        this.name=name;
-        this.lastName=lastName;
-        this.email=email;
-        this.phoneNumber=phoneNumber;
+    public String getTaxId() {
+        return taxId;
+    }
+
+    public void setTaxId(String taxId) {
+        this.taxId = taxId;
+    }
+
+    public Customer(String name, String lastName, String email,
+                    String phoneNumber, String taxId) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.taxId = taxId;
     }
 }

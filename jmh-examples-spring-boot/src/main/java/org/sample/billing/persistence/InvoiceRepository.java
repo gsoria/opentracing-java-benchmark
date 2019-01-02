@@ -7,17 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class InvoiceBox {
+public class InvoiceRepository {
 
     private Map<Long, Invoice> invoices = new HashMap<>();
 
-    public void persistInvoice(Invoice invoice){
-        System.out.println("Persisting invoice " + invoice);
-        System.out.println("Invoices in the list " + invoices.size());
+    public void persistInvoice(Invoice invoice) {
         this.invoices.put(invoice.getInvoiceNumber(), invoice);
     }
 
-    public Invoice getInvoice(Long invoiceNumber){
+    public Invoice getInvoice(Long invoiceNumber) {
         return this.invoices.get(invoiceNumber);
     }
 

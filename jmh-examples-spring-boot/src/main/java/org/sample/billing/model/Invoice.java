@@ -1,9 +1,9 @@
 package org.sample.billing.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Invoice {
@@ -13,11 +13,11 @@ public class Invoice {
     private LocalDateTime invoiceDate;
     private Integer accountNumber;
     private LocalDate dueDate;
-    private Double amountDue;
+    private BigDecimal amountDue;
     private Currency currency = Currency.USD;
     private Boolean notified;
     private InvoiceState state;
-    private List lineItems = new ArrayList();
+    private List<LineItem> lineItems = new LinkedList();
 
     public Long getInvoiceNumber() {
         return invoiceNumber;
@@ -67,11 +67,11 @@ public class Invoice {
         this.dueDate = dueDate;
     }
 
-    public Double getAmountDue() {
+    public BigDecimal getAmountDue() {
         return amountDue;
     }
 
-    public void setAmountDue(Double amountDue) {
+    public void setAmountDue(BigDecimal amountDue) {
         this.amountDue = amountDue;
     }
 

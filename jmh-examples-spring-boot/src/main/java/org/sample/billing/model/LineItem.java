@@ -1,13 +1,15 @@
 package org.sample.billing.model;
 
+import java.math.BigDecimal;
+
 public class LineItem {
 
     private Long id;
     private Long invoiceNumber;
     private String itemDescription;
     private Integer quantity;
-    private Double rate;
-    private Double total;
+    private BigDecimal rate;
+    private BigDecimal total;
 
     public Long getId() {
         return id;
@@ -41,19 +43,19 @@ public class LineItem {
         this.quantity = quantity;
     }
 
-    public Double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 }

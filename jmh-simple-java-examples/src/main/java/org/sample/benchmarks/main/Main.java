@@ -1,16 +1,10 @@
 package org.sample.benchmarks.main;
 
-import org.openjdk.jmh.profile.GCProfiler;
-import org.openjdk.jmh.profile.StackProfiler;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.sample.benchmarks.StringConcatenation;
-import org.sample.benchmarks.StringConcatenationOpentracingJaegerTracer;
-import org.sample.benchmarks.StringConcatenationOpentracingMockTracer;
-import org.sample.benchmarks.StringConcatenationOpentracingNoopTracer;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,10 +16,7 @@ public class Main {
         String resultFilePrefix = "jmh-";
 
         Options opt = new OptionsBuilder()
-                .include(StringConcatenation.class.getSimpleName())
-                .include(StringConcatenationOpentracingNoopTracer.class.getSimpleName())
-                .include(StringConcatenationOpentracingMockTracer.class.getSimpleName())
-                .include(StringConcatenationOpentracingJaegerTracer.class.getSimpleName())
+                .include(".*Benchmark")
                 .warmupIterations(5)
                 .measurementIterations(5)
                 .forks(1)
@@ -33,8 +24,6 @@ public class Main {
                 .resultFormat(resultsFileOutputType)
                 .result(buildResultsFileName(resultFilePrefix, resultsFileOutputType))
                 .jvmArgs("-server", "-Xms2048m", "-Xmx2048m")
-                //.addProfiler(GCProfiler.class)
-                //.addProfiler(StackProfiler.class)
                 .build();
         try {
             new Runner(opt).run();

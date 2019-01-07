@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 @SpringBootApplication(scanBasePackages = "org.sample.billing.*")
 public class BenchmarkBilling {
@@ -39,9 +40,11 @@ public class BenchmarkBilling {
         Invoice invoice;
         LineItem item;
 
+        private static final Random random =  new java.util.Random();
+
         //Tell JMH that this method should be called to setup the state object
         //before it is passed to the benchmark method.
-        @Setup(Level.Trial)
+        @Setup(Level.Iteration)
         public void doSetup() {
             ApplicationContext c = SpringApplication.run(
                     BenchmarkBilling.class);
@@ -59,7 +62,7 @@ public class BenchmarkBilling {
                     "800123123");
             Invoice i = new Invoice();
 
-            i.setAccountNumber(604123098);
+            i.setAccountNumber(random.nextInt());
             i.setCustomer(customer);
             i.setCurrency(Currency.CAD);
             invoice = i;
@@ -82,6 +85,7 @@ public class BenchmarkBilling {
     }
 
     @Benchmark
+    @BenchmarkMode(Mode.All)
     public Invoice benchmarkBillingNotInstrumented(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceService.createInvoice(state.invoice);
@@ -96,6 +100,7 @@ public class BenchmarkBilling {
     }
 
     @Benchmark
+    @BenchmarkMode(Mode.All)
     public Invoice benchmarkBillingNoopTracer(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceServiceNoopTracer
@@ -111,6 +116,7 @@ public class BenchmarkBilling {
     }
 
     @Benchmark
+    @BenchmarkMode(Mode.All)
     public Invoice benchmarkBillingJaegerTracer(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceServiceJaegerTracer.createInvoice(state.invoice);

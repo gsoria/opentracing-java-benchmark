@@ -3,9 +3,9 @@
 
 | Benchmark                                                                                             | Mode  | Cnt | Score       | Error         | Units |  
 | ----------------------------------------------------------------------------------------------------- |:-----:| ---:|------------:|--------------:|------:|
-| org.sample.benchmarks.StringConcatenation.testPlusConcatenation                                       | thrpt | 1 | 5 | 62114821.97 | 1149099.172 | ops/s | 
-| org.sample.benchmarks.StringConcatenation.testStringConcatenationStringBuffer                         | thrpt | 1 | 5 | 62769212.97 | 2570151.549 | ops/s | 
-| org.sample.benchmarks.StringConcatenation.testStringConcatenationStringBuilder                        | thrpt | 1 | 5 | 61499073.44 | 4485896.245 | ops/s | 
+| org.sample.benchmarks.BenchmarkStringConcatenationThroughput.testPlusConcatenation                                       | thrpt | 1 | 5 | 62114821.97 | 1149099.172 | ops/s | 
+| org.sample.benchmarks.BenchmarkStringConcatenationThroughput.testStringConcatenationStringBuffer                         | thrpt | 1 | 5 | 62769212.97 | 2570151.549 | ops/s | 
+| org.sample.benchmarks.BenchmarkStringConcatenationThroughput.testStringConcatenationStringBuilder                        | thrpt | 1 | 5 | 61499073.44 | 4485896.245 | ops/s | 
 | org.sample.benchmarks.StringConcatenationOpentracingJaegerTracer.testPlusConcatenation                | thrpt | 1 | 5 | 1900726.609 | 66149.14727 | ops/s | 
 | org.sample.benchmarks.StringConcatenationOpentracingJaegerTracer.testStringConcatenationStringBuffer  | thrpt | 1 | 5 | 1915714.754 | 52332.15791 | ops/s | 
 | org.sample.benchmarks.StringConcatenationOpentracingJaegerTracer.testStringConcatenationStringBuilder | thrpt | 1 | 5 | 1899011.867 | 187092.3438 | ops/s | 

@@ -34,7 +34,7 @@
             Jaeger version
           -->
 		<jaeger.version>0.31.0</jaeger.version>
-		<spring.boot.mainclass>org.sample.benchmarks.BenchmarkBilling</spring.boot.mainclass>
+		<spring.boot.mainclass>org.sample.benchmarks.BenchmarkBillingThroughput</spring.boot.mainclass>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -120,7 +120,7 @@
 										implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
 								<transformer
 										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-										<mainClass>org.openjdk.jmh.Main</mainClass>
+										<mainClass>org.sample.benchmarks.Main</mainClass>
 								</transformer>
 							</transformers>
 							<filters>

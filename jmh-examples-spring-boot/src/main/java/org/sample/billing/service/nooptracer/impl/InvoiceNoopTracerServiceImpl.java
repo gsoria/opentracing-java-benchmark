@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class InvoiceNoopTracerServiceImpl implements InvoiceService {
@@ -36,9 +37,14 @@ public class InvoiceNoopTracerServiceImpl implements InvoiceService {
     @Qualifier("noopTracer")
     public Tracer tracer;
 
+    private static final Random random;
+
+    static {
+        random = new java.util.Random();
+    }
+
     @Override
     public Long createInvoice(Invoice invoice) {
-
         try (Scope scope = tracer.buildSpan("createInvoice")
                 .startActive(true)) {
             invoice.setInvoiceDate(LocalDateTime.now());
@@ -115,11 +121,10 @@ public class InvoiceNoopTracerServiceImpl implements InvoiceService {
     }
 
     private static Long generateInvoiceNumber() {
-
         long min = 1000000000L;
         long max = 9999999999L;
 
-        Long number = new java.util.Random().nextLong() % (max - min) + max;
+        Long number = random.nextLong() % (max - min) + max;
         return number;
     }
 }

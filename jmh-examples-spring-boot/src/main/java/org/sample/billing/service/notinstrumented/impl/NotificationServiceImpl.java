@@ -17,11 +17,6 @@ public class NotificationServiceImpl implements NotificationService {
         String recipientAddress = invoice.getCustomer().getEmail();
 
         //mock sending email
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         return Boolean.TRUE;
     }

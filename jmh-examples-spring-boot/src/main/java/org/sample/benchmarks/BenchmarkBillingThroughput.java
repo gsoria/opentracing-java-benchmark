@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 @SpringBootApplication(scanBasePackages = "org.sample.billing.*")
-public class BenchmarkBilling {
+public class BenchmarkBillingThroughput {
 
     /*
     Sometimes you way want to initialize some variables that your benchmark code
@@ -47,7 +47,7 @@ public class BenchmarkBilling {
         @Setup(Level.Iteration)
         public void doSetup() {
             ApplicationContext c = SpringApplication.run(
-                    BenchmarkBilling.class);
+                    BenchmarkBillingThroughput.class);
             invoiceService = c.getBean(InvoiceServiceImpl.class);
             invoiceServiceNoopTracer = c.getBean(InvoiceNoopTracerServiceImpl.class);
             invoiceServiceJaegerTracer = c.getBean(InvoiceJaegerTracerServiceImpl.class);
@@ -85,7 +85,7 @@ public class BenchmarkBilling {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.All)
+    @BenchmarkMode(Mode.Throughput)
     public Invoice benchmarkBillingNotInstrumented(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceService.createInvoice(state.invoice);
@@ -100,7 +100,7 @@ public class BenchmarkBilling {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.All)
+    @BenchmarkMode(Mode.Throughput)
     public Invoice benchmarkBillingNoopTracer(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceServiceNoopTracer
@@ -116,7 +116,7 @@ public class BenchmarkBilling {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.All)
+    @BenchmarkMode(Mode.Throughput)
     public Invoice benchmarkBillingJaegerTracer(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceServiceJaegerTracer.createInvoice(state.invoice);

@@ -44,7 +44,9 @@ public class TaxJaegerTracerServiceImpl implements TaxService {
             List<LineItem> items = invoice.getLineItems();
             BigDecimal total = BigDecimal.ZERO;
             for (LineItem item : items) {
-                total = total.add(item.getTotal());
+                BigDecimal t = BigDecimal.ZERO;
+                t = t.add(item.getTotal());
+                total = t;
             }
 
             BigDecimal rate = TAX_RATES.get(invoice.getCurrency());

@@ -17,7 +17,6 @@ public class NotificationNoopTracerServiceImpl implements NotificationService {
 
     @Override
     public Boolean notifyCustomer(Invoice invoice) {
-
         try (Scope scope = tracer
                 .buildSpan("notifyCustomer")
                 .startActive(true)) {
@@ -25,11 +24,6 @@ public class NotificationNoopTracerServiceImpl implements NotificationService {
             String taxId = scope.span().getBaggageItem("taxId");
 
             //mock sending email
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             scope.span().setTag("address", recipientAddress);
             scope.span().setTag("customer taxId", taxId);

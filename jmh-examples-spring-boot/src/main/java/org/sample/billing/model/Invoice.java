@@ -27,11 +27,11 @@ public class Invoice {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public List getLineItems() {
+    public List<LineItem> getLineItems() {
         return lineItems;
     }
 
-    public void setLineItems(List lineItems) {
+    public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
     }
 

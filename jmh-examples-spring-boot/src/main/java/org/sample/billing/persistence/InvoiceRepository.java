@@ -2,14 +2,13 @@ package org.sample.billing.persistence;
 
 import org.sample.billing.model.Invoice;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class InvoiceRepository {
 
-    private Map<Long, Invoice> invoices = new HashMap<>();
+    private ConcurrentHashMap<Long, Invoice> invoices =
+            new ConcurrentHashMap<>(65536);
 
     public void persistInvoice(Invoice invoice) {
         this.invoices.put(invoice.getInvoiceNumber(), invoice);
@@ -20,6 +19,6 @@ public class InvoiceRepository {
     }
 
     public void reset(){
-        this.invoices.clear();
+       this.invoices.clear();
     }
 }

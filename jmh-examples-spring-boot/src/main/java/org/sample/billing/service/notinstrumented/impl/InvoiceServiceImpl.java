@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -30,9 +31,14 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Qualifier("taxServiceImpl")
     private TaxService taxes;
 
+    private static final Random random;
+
+    static {
+        random = new java.util.Random();
+    }
+
     @Override
     public Long createInvoice(Invoice invoice) {
-
         invoice.setInvoiceDate(LocalDateTime.now());
         invoice.setState(InvoiceState.DRAFT);
 
@@ -101,11 +107,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     private static Long generateInvoiceNumber() {
-
         long min = 1000000000L;
         long max = 9999999999L;
 
-        Long number = new java.util.Random().nextLong() % (max - min) + max;
+        Long number = random.nextLong() % (max - min) + max;
         return number;
     }
 }

@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 @SpringBootApplication(scanBasePackages = "org.sample.billing.*")
-public class BenchmarkBillingThroughput {
+public class BenchmarkBillingSampleTime {
 
     /*
     Sometimes you way want to initialize some variables that your benchmark code
@@ -40,14 +40,14 @@ public class BenchmarkBillingThroughput {
         Invoice invoice;
         LineItem item;
 
-        private static final Random random =  new java.util.Random();
+        private static final Random random =  new Random();
 
         //Tell JMH that this method should be called to setup the state object
         //before it is passed to the benchmark method.
         @Setup(Level.Iteration)
         public void doSetup() {
             ApplicationContext c = SpringApplication.run(
-                    BenchmarkBillingThroughput.class);
+                    BenchmarkBillingSampleTime.class);
             invoiceService = c.getBean(InvoiceServiceImpl.class);
             invoiceServiceNoopTracer = c.getBean(InvoiceNoopTracerServiceImpl.class);
             invoiceServiceJaegerTracer = c.getBean(InvoiceJaegerTracerServiceImpl.class);
@@ -85,7 +85,7 @@ public class BenchmarkBillingThroughput {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.All)
+    @BenchmarkMode(Mode.SampleTime)
     public Invoice benchmarkBillingNotInstrumented(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceService.createInvoice(state.invoice);
@@ -100,7 +100,7 @@ public class BenchmarkBillingThroughput {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.All)
+    @BenchmarkMode(Mode.SampleTime)
     public Invoice benchmarkBillingNoopTracer(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceServiceNoopTracer
@@ -116,7 +116,7 @@ public class BenchmarkBillingThroughput {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.Throughput)
+    @BenchmarkMode(Mode.SampleTime)
     public Invoice benchmarkBillingJaegerTracer(StateVariables state) {
         //Create invoice
         Long invoiceNumber = state.invoiceServiceJaegerTracer.createInvoice(state.invoice);

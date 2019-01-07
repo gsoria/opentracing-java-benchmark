@@ -20,8 +20,8 @@ public class Main {
         int warmup = Integer.parseInt(properties.getProperty("benchmark.warmup.iterations", "5"));
         int iterations = Integer.parseInt(properties.getProperty("benchmark.test.iterations", "5"));
         int forks = Integer.parseInt(properties.getProperty("benchmark.test.forks", "1"));
-        int threads = Integer.parseInt(properties.getProperty("benchmark.test.threads", "1"));
-        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*BenchmarkBilling");
+        int threads = Integer.parseInt(properties.getProperty("benchmark.test.threads", "5"));
+        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*BenchmarkBillingThroughput");
         String resultFilePrefix = properties.getProperty("benchmark.global.resultfileprefix", "jmh-");
 
         ResultFormatType resultsFileOutputType = ResultFormatType.JSON;
@@ -33,11 +33,11 @@ public class Main {
                 .forks(forks)
                 .threads(threads)
                 .shouldDoGC(true)
-                .shouldFailOnError(true)
+                .shouldFailOnError(false)
                 .resultFormat(resultsFileOutputType)
                 .result(buildResultsFileName(resultFilePrefix, resultsFileOutputType))
                 .shouldFailOnError(true)
-                .jvmArgs("-server")
+                .jvmArgs("-server", "-Xms2048m", "-Xmx2048m", "-XX:NewRatio=8")
                 .build();
 
         new Runner(opt).run();

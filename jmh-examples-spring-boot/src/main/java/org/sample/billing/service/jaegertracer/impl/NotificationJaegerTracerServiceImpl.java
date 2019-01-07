@@ -25,11 +25,6 @@ public class NotificationJaegerTracerServiceImpl implements NotificationService 
             String taxId = scope.span().getBaggageItem("taxId");
 
             //mock sending email
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             scope.span().setTag("address", recipientAddress);
             scope.span().setTag("customer taxId", taxId);

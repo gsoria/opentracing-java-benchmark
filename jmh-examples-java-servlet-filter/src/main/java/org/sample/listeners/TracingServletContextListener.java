@@ -8,24 +8,19 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-public class MyAppServletContextListener
+public class TracingServletContextListener
         implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        System.out.println("ServletContextListener destroyed");
     }
 
-    //Run this before web application is started
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        System.out.println("ServletContextListener started");
         ServletContext ctx = servletContextEvent.getServletContext();
         Tracer tracer = getTracer();
         TracingFilter filter = new TracingFilter(tracer);
         ctx.addFilter("tracingFilter", filter);
-
-        System.out.println("tracingFiler added + "  + tracer.getClass().getName());
     }
 
     public Tracer getTracer(){

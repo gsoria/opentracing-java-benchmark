@@ -1,4 +1,4 @@
-package org.sample.billing.service.jaegertracer.impl;
+package org.sample.billing.service.haystacktracer.impl;
 
 import io.opentracing.Scope;
 import io.opentracing.Tracer;
@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NotificationJaegerTracerServiceImpl implements NotificationService {
+public class NotificationHaystackTracerServiceImpl implements NotificationService {
 
     @Autowired
-    @Qualifier("jaegerTracer")
+    @Qualifier("haystackTracer")
     public Tracer tracer;
 
     @Value("${thread.sleep}")
@@ -21,7 +21,6 @@ public class NotificationJaegerTracerServiceImpl implements NotificationService 
 
     @Override
     public Boolean notifyCustomer(Invoice invoice) {
-
         try (Scope scope = tracer
                 .buildSpan("notifyCustomer")
                 .startActive(true)) {

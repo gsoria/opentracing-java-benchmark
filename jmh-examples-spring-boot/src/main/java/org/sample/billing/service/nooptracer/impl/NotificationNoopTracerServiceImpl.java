@@ -6,6 +6,7 @@ import org.sample.billing.model.Invoice;
 import org.sample.billing.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,9 @@ public class NotificationNoopTracerServiceImpl implements NotificationService {
     @Autowired
     @Qualifier("noopTracer")
     public Tracer tracer;
+
+    @Value("${thread.sleep}")
+    private String msToSleep;
 
     @Override
     public Boolean notifyCustomer(Invoice invoice) {
@@ -24,6 +28,11 @@ public class NotificationNoopTracerServiceImpl implements NotificationService {
             String taxId = scope.span().getBaggageItem("taxId");
 
             //mock sending email
+            try {
+                Thread.sleep(new Integer(msToSleep));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             scope.span().setTag("address", recipientAddress);
             scope.span().setTag("customer taxId", taxId);

@@ -1,5 +1,9 @@
 package org.sample.billing.config;
 
+import com.expedia.www.haystack.client.dispatchers.Dispatcher;
+import com.expedia.www.haystack.client.dispatchers.NoopDispatcher;
+import com.expedia.www.haystack.client.metrics.MetricsRegistry;
+import com.expedia.www.haystack.client.metrics.NoopMetricsRegistry;
 import io.jaegertracing.internal.samplers.ConstSampler;
 import io.opentracing.Tracer;
 import io.opentracing.mock.MockTracer;
@@ -38,6 +42,15 @@ public class TracerConfiguration {
                 .withReporter(reporterConfig);
 
         Tracer tracer =  config.getTracer();
+        return tracer;
+    }
+    @Bean(name="haystackTracer")
+    public Tracer createHaystackTracer(){
+        MetricsRegistry metrics = new NoopMetricsRegistry();
+        Dispatcher dispatcher = new NoopDispatcher();
+        Tracer tracer =
+                new com.expedia.www.haystack.client.Tracer.Builder(metrics,
+                        "JMHTestService", dispatcher).build();
         return tracer;
     }
 }

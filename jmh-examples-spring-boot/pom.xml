@@ -34,6 +34,7 @@
             Jaeger version
           -->
 		<jaeger.version>0.31.0</jaeger.version>
+		<haystack.version>0.2.3</haystack.version>
 		<spring.boot.mainclass>org.sample.benchmarks.BenchmarkBillingThroughput</spring.boot.mainclass>
 	</properties>
 	<dependencies>
@@ -78,6 +79,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.expedia.www/haystack-client-java-integrations -->
+		<dependency>
+			<groupId>com.expedia.www</groupId>
+			<artifactId>haystack-client-core</artifactId>
+			<version>${haystack.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

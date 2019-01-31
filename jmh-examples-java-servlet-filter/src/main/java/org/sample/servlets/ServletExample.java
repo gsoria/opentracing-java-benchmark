@@ -14,7 +14,6 @@ public class ServletExample extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        System.out.println("servlet example");
         // Set the response message's MIME type
         response.setContentType("text/html;charset=UTF-8");
         // Allocate a output writer to write the response message into the network socket

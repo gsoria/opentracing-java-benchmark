@@ -4,7 +4,4 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <listener>
-    <listener-class>org.sample.listeners.TracingServletContextListener</listener-class>
-  </listener>
 </web-app>

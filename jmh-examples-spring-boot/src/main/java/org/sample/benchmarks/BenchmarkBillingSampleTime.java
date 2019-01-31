@@ -7,6 +7,7 @@ import org.sample.billing.model.Invoice;
 import org.sample.billing.model.LineItem;
 import org.sample.billing.persistence.InvoiceRepository;
 import org.sample.billing.service.InvoiceService;
+import org.sample.billing.service.haystacktracer.impl.InvoiceHaystackTracerServiceImpl;
 import org.sample.billing.service.jaegertracer.impl.InvoiceJaegerTracerServiceImpl;
 import org.sample.billing.service.nooptracer.impl.InvoiceNoopTracerServiceImpl;
 import org.sample.billing.service.notinstrumented.impl.InvoiceServiceImpl;
@@ -35,6 +36,7 @@ public class BenchmarkBillingSampleTime {
         InvoiceService invoiceService;
         InvoiceService invoiceServiceNoopTracer;
         InvoiceService invoiceServiceJaegerTracer;
+        InvoiceService invoiceServiceHaystackTracer;
 
         //Data objects
         Invoice invoice;
@@ -51,6 +53,8 @@ public class BenchmarkBillingSampleTime {
             invoiceService = c.getBean(InvoiceServiceImpl.class);
             invoiceServiceNoopTracer = c.getBean(InvoiceNoopTracerServiceImpl.class);
             invoiceServiceJaegerTracer = c.getBean(InvoiceJaegerTracerServiceImpl.class);
+            invoiceServiceHaystackTracer =
+                    c.getBean(InvoiceHaystackTracerServiceImpl.class);
 
             repository = c.getBean(InvoiceRepository.class);
         }
@@ -128,6 +132,21 @@ public class BenchmarkBillingSampleTime {
         // Issue invoice
         Invoice invoice = state.invoiceServiceJaegerTracer.getInvoice(invoiceNumber);
         return state.invoiceServiceJaegerTracer.issueInvoice(invoiceNumber);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public Invoice benchmarkBillingHaystackTracer(StateVariables state) {
+        //Create invoice
+        Long invoiceNumber = state.invoiceServiceHaystackTracer.createInvoice(state.invoice);
+
+        //Add item / items
+        LineItem item = state.item;
+        state.invoiceServiceHaystackTracer.addLineItem(invoiceNumber, item);
+
+        // Issue invoice
+        Invoice invoice = state.invoiceServiceHaystackTracer.getInvoice(invoiceNumber);
+        return state.invoiceServiceHaystackTracer.issueInvoice(invoiceNumber);
     }
 }
 

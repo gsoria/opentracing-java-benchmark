@@ -1,10 +1,9 @@
 package org.sample.listeners;
 
+import io.jaegertracing.internal.samplers.ConstSampler;
 import io.opentracing.Tracer;
-import io.opentracing.contrib.web.servlet.filter.TracingFilter;
-import io.opentracing.noop.NoopTracerFactory;
+import io.opentracing.util.GlobalTracer;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -17,14 +16,28 @@ public class TracingServletContextListener
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        ServletContext ctx = servletContextEvent.getServletContext();
         Tracer tracer = getTracer();
-        TracingFilter filter = new TracingFilter(tracer);
-        ctx.addFilter("tracingFilter", filter);
+        GlobalTracer.register(tracer);
     }
 
     public Tracer getTracer(){
-        return NoopTracerFactory.create();
+        io.jaegertracing.Configuration.SamplerConfiguration samplerConfig =
+                io.jaegertracing.Configuration.SamplerConfiguration.fromEnv()
+                        .withType(ConstSampler.TYPE)
+                        .withParam(1);
+
+        io.jaegertracing.Configuration.ReporterConfiguration reporterConfig =
+                io.jaegertracing.Configuration.ReporterConfiguration.fromEnv()
+                        .withLogSpans(true);
+
+        io.jaegertracing.Configuration config =
+                new  io.jaegertracing.Configuration(
+                        "JavaServletFilterJaegerTracer")
+                        .withSampler(samplerConfig)
+                        .withReporter(reporterConfig);
+
+        Tracer tracer =  config.getTracer();
+        return tracer;
     }
 }
 

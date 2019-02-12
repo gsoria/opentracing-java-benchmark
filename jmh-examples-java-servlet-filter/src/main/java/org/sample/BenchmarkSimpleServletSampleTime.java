@@ -7,16 +7,8 @@ import io.undertow.Undertow;
 import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.Servlets;
-
 import io.undertow.servlet.api.*;
-import org.openjdk.jmh.annotations.TearDown;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.*;
 import org.sample.filters.PostMetricsFilter;
 import org.sample.filters.PreMetricsFilter;
 import org.sample.listeners.TracingServletContextListener;
@@ -26,7 +18,7 @@ import javax.servlet.DispatcherType;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-public class BenchmarkSimpleServlet {
+public class BenchmarkSimpleServletSampleTime {
 
     @State(Scope.Thread)
     public static class StateVariables {
@@ -37,7 +29,7 @@ public class BenchmarkSimpleServlet {
 
             try {
                 DeploymentInfo servletBuilder = Servlets.deployment()
-                        .setClassLoader(BenchmarkSimpleServlet.class.getClassLoader())
+                        .setClassLoader(BenchmarkSimpleServletSampleTime.class.getClassLoader())
                         .setContextPath("/ui")
                         .setDeploymentName("jmh-examples-java-servlet-filter" +
                                 ".war")
@@ -53,12 +45,12 @@ public class BenchmarkSimpleServlet {
 
                 manager.deploy();
                 PathHandler path = Handlers.path(
-                        Handlers.resource(new ClassPathResourceManager(BenchmarkSimpleServlet.class.getClassLoader(), "webapp")))
+                        Handlers.resource(new ClassPathResourceManager(BenchmarkSimpleServletSampleTime.class.getClassLoader(), "webapp")))
                         .addExactPath("/", Handlers.redirect("/jmh-examples-java-servlet-filter"))
                         .addPrefixPath("/jmh-examples-java-servlet-filter", manager.start());
 
                 server = Undertow.builder()
-                        .addHttpListener(8080, "localhost")
+                        .addHttpListener(9090, "localhost")
                         .setHandler(path)
                         .build();
 
@@ -113,7 +105,7 @@ public class BenchmarkSimpleServlet {
 
             try {
                 DeploymentInfo servletBuilder = Servlets.deployment()
-                        .setClassLoader(BenchmarkSimpleServlet.class.getClassLoader())
+                        .setClassLoader(BenchmarkSimpleServletSampleTime.class.getClassLoader())
                         .setContextPath("/ui")
                         .setDeploymentName("jmh-examples-java-servlet-filter" +
                                 ".war")
@@ -127,12 +119,12 @@ public class BenchmarkSimpleServlet {
                 manager.deploy();
 
                 PathHandler path = Handlers.path(
-                        Handlers.resource(new ClassPathResourceManager(BenchmarkSimpleServlet.class.getClassLoader(), "webapp")))
+                        Handlers.resource(new ClassPathResourceManager(BenchmarkSimpleServletSampleTime.class.getClassLoader(), "webapp")))
                         .addExactPath("/", Handlers.redirect("/jmh-examples-java-servlet-filter"))
                         .addPrefixPath("/jmh-examples-java-servlet-filter", manager.start());
 
                 server = Undertow.builder()
-                        .addHttpListener(8080, "localhost")
+                        .addHttpListener(9090, "localhost")
                         .setHandler(path)
                         .build();
 
@@ -159,18 +151,18 @@ public class BenchmarkSimpleServlet {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequest(StateVariables state)
+    @BenchmarkMode(Mode.SampleTime)
+    public String testSimpleRequestST(StateVariables state)
             throws Exception {
-        String r = Unirest.get("http://localhost:8080/").asString().getBody();
+        String r = Unirest.get("http://localhost:9090/").asString().getBody();
         return r;
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestWithoutFilters(StateVariablesWithoutFilters state)
+    @BenchmarkMode(Mode.SampleTime)
+    public String testSimpleRequestWithoutFiltersST(StateVariablesWithoutFilters state)
             throws Exception {
-        String r = Unirest.get("http://localhost:8080/").asString().getBody();
+        String r = Unirest.get("http://localhost:9090/").asString().getBody();
         return r;
     }
 }

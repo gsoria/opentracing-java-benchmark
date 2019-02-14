@@ -1,25 +1,21 @@
-# jmh-examples
+# JMH benchmark for OpenTracing libraries
 
-This repo contains some basic benchmark tests using JHM:
+This repository contains a set of benchmarks to assess the performance of different OpenTracing components and/or libraries. Some tests might include concrete implementations, such as Jaeger and Haystack, mostly for sanity checking purposes.
 
-- String concatenation (+ / StringBuilder/StringBuffer)
-- Array Add Operation (ArrayList/LinkedList)
-- Date Comparison (java.time.Instant/java.util.Date)
+List of current tests:
 
-To generate the jar:
+| Test                                            | No Instrumentation | Noop Tracer | Mock Tracer | Jaeger Tracer | Haystack Tracer |
+| ----------------------------------------------- | ------------------ | ----------- | ----------- | ------------- | --------------- |
+| Throughput, one span, one tag, one log message  |          ✓         |      ✓      |       ✓     |       ✓       |        ✗        |
+| Time, one span, one tag, one log message        |          ✓         |      ✓      |       ✓     |       ✓       |        ✗        |
 
-`
+## Running it
+
+```
 mvn clean install
-`
-
-And then execute:
-
-`
-java -jar target/benchmarks.jar
-`
-
-Or if you want to write the results in an output file:
-
-`
 java -jar target/benchmarks.jar -rf csv -rff results.csv
-`
+```
+
+## Feedback
+
+Performance tests are tricky and we are sure that some things might have done better. We welcome your constructive comments and we appreciate PRs.

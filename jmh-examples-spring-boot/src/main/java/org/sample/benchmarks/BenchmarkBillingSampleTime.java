@@ -20,13 +20,6 @@ import java.util.Random;
 
 @SpringBootApplication(scanBasePackages = "org.sample.billing.*")
 public class BenchmarkBillingSampleTime {
-
-    /*
-    Sometimes you way want to initialize some variables that your benchmark code
-    needs, but which you do not want to be part of the code your benchmark
-    measures. Such variables are called "state" variables.
-    */
-
     @State(Scope.Thread)
     public static class StateVariables {
         //Spring bean used in doTearDown method
@@ -42,19 +35,17 @@ public class BenchmarkBillingSampleTime {
         Invoice invoice;
         LineItem item;
 
+        // TODO: dealing with Random values in performance tests is not advisable, as you may get blocked while waiting for enough entropy
+        // If the tests aren't running in parallel, a simple "i++" should be sufficient
         private static final Random random =  new Random();
 
-        //Tell JMH that this method should be called to setup the state object
-        //before it is passed to the benchmark method.
         @Setup(Level.Iteration)
         public void doSetup() {
-            ApplicationContext c = SpringApplication.run(
-                    BenchmarkBillingSampleTime.class);
+            ApplicationContext c = SpringApplication.run(BenchmarkBillingSampleTime.class);
             invoiceService = c.getBean(InvoiceServiceImpl.class);
             invoiceServiceNoopTracer = c.getBean(InvoiceNoopTracerServiceImpl.class);
             invoiceServiceJaegerTracer = c.getBean(InvoiceJaegerTracerServiceImpl.class);
-            invoiceServiceHaystackTracer =
-                    c.getBean(InvoiceHaystackTracerServiceImpl.class);
+            invoiceServiceHaystackTracer = c.getBean(InvoiceHaystackTracerServiceImpl.class);
 
             repository = c.getBean(InvoiceRepository.class);
         }
@@ -80,8 +71,6 @@ public class BenchmarkBillingSampleTime {
 
         }
 
-        //Tells JMH that this method should be called to clean up ("tear down")
-        //the state object after the benchmark has been execute
         @TearDown(Level.Iteration)
         public void doTearDown() {
             repository.reset();

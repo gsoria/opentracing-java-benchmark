@@ -21,6 +21,12 @@ import java.util.Random;
 
 @Service
 public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
+    // TODO: I think you can have the following classes instead:
+    // InvoiceServiceImpl, with the "business" code
+    // abstract TracedInvoiceService extending the InvoiceServiceImpl, wrapping the calls in spans, with an abstract getTracer() method
+    // final JaegerInvoiceService extending TracedInvoiceService, implementing the getTracer() method
+    // final HaystackInvoiceService extending TracedInvoiceService, implementing the getTracer() method
+    // this way, your "business" code is the same for all tests, avoiding code duplication
 
     @Autowired
     private InvoiceRepository repository;
@@ -37,6 +43,7 @@ public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
     @Qualifier("haystackTracer")
     public Tracer tracer;
 
+    // TODO: try to avoid this random as well
     private static final Random random;
 
     static {
@@ -45,8 +52,7 @@ public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
 
     @Override
     public Long createInvoice(Invoice invoice) {
-        try (Scope scope = tracer.buildSpan("createInvoice")
-                .startActive(true)) {
+        try (Scope scope = tracer.buildSpan("createInvoice").startActive(true)) {
             invoice.setInvoiceDate(LocalDateTime.now());
             invoice.setState(InvoiceState.DRAFT);
 
@@ -55,8 +61,7 @@ public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
 
             scope.span().log("createInvoice");
             scope.span().setTag("customer", invoice.getCustomer().getEmail());
-            scope.span().setBaggageItem("taxId",
-                    invoice.getCustomer().getTaxId());
+            scope.span().setBaggageItem("taxId", invoice.getCustomer().getTaxId());
 
             return invoice.getInvoiceNumber();
         }
@@ -73,8 +78,7 @@ public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
 
         item.setInvoiceNumber(invoiceNumber);
         //calculate total
-        item.setTotal(item.getRate().multiply(new BigDecimal(
-                item.getQuantity())));
+        item.setTotal(item.getRate().multiply(new BigDecimal(item.getQuantity())));
 
         invoice.addLineItem(item);
 
@@ -88,8 +92,7 @@ public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
         //calculate total
         items.forEach((item) -> {
             item.setInvoiceNumber(invoiceNumber);
-            item.setTotal(item.getRate().multiply(
-                    new BigDecimal(item.getQuantity())));
+            item.setTotal(item.getRate().multiply(new BigDecimal(item.getQuantity())));
         });
 
         invoice.addLineItems(items);
@@ -106,10 +109,7 @@ public class InvoiceHaystackTracerServiceImpl implements InvoiceService {
         Invoice taxedInvoice = taxes.computeTaxes(invoice);
 
         //notify to customer
-        Boolean notified = notifications.notifyCustomer(taxedInvoice);
-        if (notified) {
-            taxedInvoice.setNotified(Boolean.TRUE);
-        }
+        taxedInvoice.setNotified(notifications.notifyCustomer(taxedInvoice));
 
         taxedInvoice.setState(InvoiceState.ISSUED);
         taxedInvoice.setInvoiceDate(LocalDateTime.now());

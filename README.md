@@ -6,14 +6,14 @@ List of current tests:
 
 | Test                                            | No Instrumentation | Noop Tracer | Mock Tracer | Jaeger Tracer | Haystack Tracer |
 | ----------------------------------------------- | ------------------ | ----------- | ----------- | ------------- | --------------- |
-| Throughput, one span, one tag, one log message  |          ✓         |      ✓      |       ✓     |       ✓       |        ✗        |
-| Time, one span, one tag, one log message        |          ✓         |      ✓      |       ✓     |       ✓       |        ✗        |
+| Throughput, one span, one tag, one log message  |          ✓         |      ✓      |       ✓     |       ✓       |        ✓        |
+| Time, one span, one tag, one log message        |          ✓         |      ✓      |       ✓     |       ✓       |        ✓        |
 
 ## Running it
 
 ```
 mvn clean install
-java -jar target/benchmarks.jar -rf csv -rff results.csv
+java -jar target/benchmarks.jar
 ```
 
 ## Feedback

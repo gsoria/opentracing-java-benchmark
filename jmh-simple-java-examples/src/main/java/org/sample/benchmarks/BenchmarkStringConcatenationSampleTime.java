@@ -5,6 +5,7 @@ import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 
 public class BenchmarkStringConcatenationSampleTime extends BenchmarkStringConcatenation {
+
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     public String testNoInstrumentation(StateVariables state) {
@@ -27,6 +28,12 @@ public class BenchmarkStringConcatenationSampleTime extends BenchmarkStringConca
     @BenchmarkMode(Mode.SampleTime)
     public void testJaegerTracer(StateVariables state) {
         doJaegerTracer(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public void testHaystackTracer(StateVariables state) {
+        doHaystackTracer(state);
     }
 }
 

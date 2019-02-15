@@ -17,7 +17,7 @@ public class Invoice {
     private Currency currency = Currency.USD;
     private Boolean notified;
     private InvoiceState state;
-    private List<LineItem> lineItems = new LinkedList();
+    private List<LineItem> lineItems = new LinkedList<>();
 
     public Long getInvoiceNumber() {
         return invoiceNumber;

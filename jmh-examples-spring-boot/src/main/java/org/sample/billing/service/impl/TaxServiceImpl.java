@@ -1,16 +1,11 @@
-package org.sample.billing.service.notinstrumented.impl;
+package org.sample.billing.service.impl;
 
-import io.opentracing.Scope;
-import io.opentracing.Tracer;
 import org.sample.billing.model.Currency;
 import org.sample.billing.model.Invoice;
 import org.sample.billing.model.InvoiceState;
 import org.sample.billing.model.LineItem;
 import org.sample.billing.service.TaxService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -31,12 +26,13 @@ public class TaxServiceImpl implements TaxService {
 
     @Override
     public Invoice computeTaxes(Invoice invoice) {
-
         //total
         List<LineItem> items = invoice.getLineItems();
         BigDecimal total = BigDecimal.ZERO;
         for (LineItem item : items) {
-            total = total.add(item.getTotal());
+            BigDecimal t = BigDecimal.ZERO;
+            t = t.add(item.getTotal());
+            total = t;
         }
 
         BigDecimal rate = TAX_RATES.get(invoice.getCurrency());

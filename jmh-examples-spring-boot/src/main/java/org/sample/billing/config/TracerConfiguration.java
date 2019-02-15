@@ -10,21 +10,25 @@ import io.opentracing.mock.MockTracer;
 import io.opentracing.noop.NoopTracerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class TracerConfiguration {
 
-    @Bean(name = "noopTracer" )
+    @Profile("noopTracer")
+    @Bean
     public Tracer createNoopTracer(){
         return NoopTracerFactory.create();
     }
 
-    @Bean(name = "mockTracer")
+    @Profile("mockTracer")
+    @Bean
     public Tracer creatMockTracer(){
         return new MockTracer();
     }
 
-    @Bean(name = "jaegerTracer")
+    @Profile("jaegerTracer")
+    @Bean
     public Tracer createJaegerTracer() {
         io.jaegertracing.Configuration.SamplerConfiguration samplerConfig =
                 io.jaegertracing.Configuration.SamplerConfiguration.fromEnv()
@@ -44,7 +48,9 @@ public class TracerConfiguration {
         Tracer tracer =  config.getTracer();
         return tracer;
     }
-    @Bean(name="haystackTracer")
+
+    @Profile("haystackTracer")
+    @Bean
     public Tracer createHaystackTracer(){
         MetricsRegistry metrics = new NoopMetricsRegistry();
         Dispatcher dispatcher = new NoopDispatcher();

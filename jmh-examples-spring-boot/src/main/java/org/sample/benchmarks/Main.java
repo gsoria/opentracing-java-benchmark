@@ -6,7 +6,6 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +20,7 @@ public class Main {
         int iterations = Integer.parseInt(properties.getProperty("benchmark.test.iterations", "5"));
         int forks = Integer.parseInt(properties.getProperty("benchmark.test.forks", "1"));
         int threads = Integer.parseInt(properties.getProperty("benchmark.test.threads", "5"));
-        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*BenchmarkBillingThroughput");
+        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*Benchmark");
         String resultFilePrefix = properties.getProperty("benchmark.global.resultfileprefix", "jmh-");
 
         ResultFormatType resultsFileOutputType = ResultFormatType.JSON;

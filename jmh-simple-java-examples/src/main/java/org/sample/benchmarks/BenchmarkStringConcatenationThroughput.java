@@ -24,10 +24,15 @@ public class BenchmarkStringConcatenationThroughput extends BenchmarkStringConca
         doMockTracer(state);
     }
 
-    // Benchmark Jaeger Tracer
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
     public void testJaegerTracer(StateVariables state) {
         doJaegerTracer(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.Throughput)
+    public void testHaystackTracer(StateVariables state) {
+        doHaystackTracer(state);
     }
 }

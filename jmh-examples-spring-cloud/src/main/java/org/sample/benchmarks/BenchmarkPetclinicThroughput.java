@@ -1,0 +1,36 @@
+package org.sample.benchmarks;
+
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Mode;
+import org.sample.billing.model.Invoice;
+import org.springframework.samples.petclinic.owner.Owner;
+
+public class BenchmarkBillingSampleTime extends BenchmarkPetclinic {
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public Owner benchmarkBillingNotInstrumented(StateVariablesNotInstrumented state) {
+        return findPetById(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public Owner benchmarkBillingNoopTracer(StateVariablesNoopTracer state) {
+        return findPetById(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public Owner benchmarkBillingJaegerTracer(StateVariablesJaeger state) {
+        return findPetById(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public Owner benchmarkBillingHaystackTracer(StateVariablesHaystack state) {
+        return findPetById(state);
+    }
+}
+
+

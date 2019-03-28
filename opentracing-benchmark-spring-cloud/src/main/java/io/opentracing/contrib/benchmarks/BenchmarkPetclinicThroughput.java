@@ -10,25 +10,25 @@ public class BenchmarkPetclinicThroughput extends BenchmarkPetclinic {
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     public Owner benchmarkBillingNotInstrumented(StateVariablesNotInstrumented state) {
-        return findPetById(state);
+        return findPetByOwnerId(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     public Owner benchmarkBillingNoopTracer(StateVariablesNoopTracer state) {
-        return findPetById(state);
+        return findPetByOwnerId(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     public Owner benchmarkBillingJaegerTracer(StateVariablesJaeger state) {
-        return findPetById(state);
+        return findPetByOwnerId(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     public Owner benchmarkBillingHaystackTracer(StateVariablesHaystack state) {
-        return findPetById(state);
+        return findPetByOwnerId(state);
     }
 }
 

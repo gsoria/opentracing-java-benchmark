@@ -9,7 +9,7 @@ public class BenchmarkBillingThroughput extends BenchmarkBilling {
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public Invoice benchmarkBillingNotInstrumented(StateVariables state) {
+    public Invoice benchmarkBillingNotInstrumented(StateVariablesNotInstrumented state) {
         return doBenchmarkBillingNotInstrumented(state);
     }
 

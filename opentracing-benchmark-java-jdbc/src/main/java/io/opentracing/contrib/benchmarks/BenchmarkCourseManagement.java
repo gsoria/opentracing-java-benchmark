@@ -1,6 +1,7 @@
 package io.opentracing.contrib.benchmarks;
 
 import com.autentia.training.course.CourseManagementApplication;
+import com.autentia.training.course.config.TracerImplementation;
 import com.autentia.training.course.resources.CourseResource;
 import org.openjdk.jmh.annotations.*;
 import org.springframework.boot.SpringApplication;
@@ -34,6 +35,8 @@ public class BenchmarkCourseManagement {
     public static class StateVariablesNotInstrumented extends StateVariables {
         @Setup(Level.Iteration)
         public void doSetup() {
+
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.NOTINSTRUMENTED);
             initApplication();
         }
     }
@@ -42,7 +45,7 @@ public class BenchmarkCourseManagement {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "jaegerTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.JAEGERTRACER);
             initApplication();
         }
     }
@@ -51,7 +54,7 @@ public class BenchmarkCourseManagement {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "noopTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.NOOPTRACER);
             initApplication();
         }
     }
@@ -60,7 +63,7 @@ public class BenchmarkCourseManagement {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "haystackTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.HAYSTACKTRACER);
             initApplication();
         }
     }

@@ -1,29 +1,25 @@
 package io.opentracing.contrib.benchmarks;
 
 import io.opentracing.contrib.benchmarks.util.ResultsFileNameBuilder;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Measurement;
-import org.openjdk.jmh.annotations.Warmup;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.results.format.ResultFormatType;
 
 import java.io.File;
 import java.io.IOException;
 
-public class BenchmarkSimpleServletAB
-        extends BenchmarkSimpleServlet {
+public class BenchmarkSimpleServletAB extends BenchmarkSimpleServlet {
     @Benchmark
-    @BenchmarkMode({org.openjdk.jmh.annotations.Mode.SingleShotTime})
+    @BenchmarkMode(Mode.SingleShotTime)
     @Warmup(iterations = 1)
     @Measurement(iterations = 1)
     public void testABSimpleRequest(StateVariablesNotInstrumented state)
             throws Exception {
-        String outputFile = ResultsFileNameBuilder.buildResultsFileName("ab-non-instrumented-", ResultFormatType.CSV);
+        String outputFile = ResultsFileNameBuilder.buildResultsFileName("ab-not-instrumented-", ResultFormatType.CSV);
         runABTest(outputFile);
     }
 
     @Benchmark
-    @BenchmarkMode({org.openjdk.jmh.annotations.Mode.SingleShotTime})
+    @BenchmarkMode(Mode.SingleShotTime)
     @Warmup(iterations = 1)
     @Measurement(iterations = 1)
     public void testABSimpleRequestJaegerWithoutMetricFilters(StateVariablesJaegerWithoutMetricFilters state)
@@ -33,7 +29,7 @@ public class BenchmarkSimpleServletAB
     }
 
     @Benchmark
-    @BenchmarkMode({org.openjdk.jmh.annotations.Mode.SingleShotTime})
+    @BenchmarkMode(Mode.SingleShotTime)
     @Warmup(iterations = 1)
     @Measurement(iterations = 1)
     public void testABSimpleRequestNooptracerWithoutMetricFilters(StateVariablesNoopTracerWithoutMetricFilters state)
@@ -43,7 +39,7 @@ public class BenchmarkSimpleServletAB
     }
 
     @Benchmark
-    @BenchmarkMode({org.openjdk.jmh.annotations.Mode.SingleShotTime})
+    @BenchmarkMode(Mode.SingleShotTime)
     @Warmup(iterations = 1)
     @Measurement(iterations = 1)
     public void testABSimpleRequestMocktracerWithoutMetricFilters(StateVariablesMockTracerWithoutMetricFilters state)
@@ -53,7 +49,7 @@ public class BenchmarkSimpleServletAB
     }
 
     @Benchmark
-    @BenchmarkMode({org.openjdk.jmh.annotations.Mode.SingleShotTime})
+    @BenchmarkMode(Mode.SingleShotTime)
     @Warmup(iterations = 1)
     @Measurement(iterations = 1)
     public void testABSimpleRequestHaystackWithoutMetricFilters(StateVariablesHaystackWithoutMetricFilters state)
@@ -65,12 +61,12 @@ public class BenchmarkSimpleServletAB
     private void runABTest(String outputFile) throws IOException {
         ProcessBuilder pb = new ProcessBuilder(
                 "ab",
-                "-e",
+                "-g",
                 outputFile,
                 "-l",
                 "-r",
                 "-n",
-                "100",
+                "50000",
                 "-c",
                 "10",
                 "-k",
@@ -80,5 +76,10 @@ public class BenchmarkSimpleServletAB
 
         pb.directory(new File("."));
         Process p = pb.start();
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

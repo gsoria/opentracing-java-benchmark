@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
+@Service("invoiceServiceImpl")
 public class InvoiceServiceImpl implements InvoiceService {
 
     @Autowired

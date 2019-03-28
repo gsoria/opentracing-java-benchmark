@@ -14,9 +14,9 @@ public class Main {
         String resultFilePrefix = "jmh-";
 
         Options opt = new OptionsBuilder()
-                .include(".*Benchmark")
-                .warmupIterations(5)
-                .measurementIterations(5)
+                .include(".*BenchmarkSimpleServletAB")
+                .warmupIterations(1)
+                .measurementIterations(1)
                 .forks(1)
                 .threads(1)
                 .resultFormat(resultsFileOutputType)

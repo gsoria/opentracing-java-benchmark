@@ -146,20 +146,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<mainClass>${spring.boot.mainclass}</mainClass>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -194,10 +180,6 @@
 				<plugin>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>2.2.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.17</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

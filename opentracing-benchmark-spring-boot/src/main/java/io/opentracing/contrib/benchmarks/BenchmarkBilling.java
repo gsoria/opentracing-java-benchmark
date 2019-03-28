@@ -1,5 +1,7 @@
 package io.opentracing.contrib.benchmarks;
 
+import io.opentracing.contrib.billing.config.TracerImplementation;
+import io.opentracing.contrib.billing.service.impl.InvoiceServiceImpl;
 import org.openjdk.jmh.annotations.*;
 import io.opentracing.contrib.billing.model.Currency;
 import io.opentracing.contrib.billing.model.Customer;
@@ -7,11 +9,9 @@ import io.opentracing.contrib.billing.model.Invoice;
 import io.opentracing.contrib.billing.model.LineItem;
 import io.opentracing.contrib.billing.persistence.InvoiceRepository;
 import io.opentracing.contrib.billing.service.InvoiceService;
-import io.opentracing.contrib.billing.service.impl.InvoiceServiceImpl;
 import io.opentracing.contrib.billing.service.traced.TracedInvoiceService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.AbstractEnvironment;
 import java.math.BigDecimal;
@@ -65,11 +65,23 @@ public class BenchmarkBilling {
         }
     }
 
+    public static class StateVariablesNotInstrumented extends StateVariables {
+        @Setup(Level.Iteration)
+        public void doSetup() {
+
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.NOTINSTRUMENTED);
+
+            c = SpringApplication.run(BenchmarkBilling.class);
+            invoiceService =  c.getBean("invoiceServiceImpl", InvoiceServiceImpl.class);
+            repository = c.getBean(InvoiceRepository.class);
+        }
+    }
+
     public static class StateVariablesJaeger extends StateVariables {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "jaegerTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.JAEGERTRACER);
 
             c = SpringApplication.run(BenchmarkBilling.class);
             invoiceTracedService =  c.getBean(TracedInvoiceService.class);
@@ -81,7 +93,7 @@ public class BenchmarkBilling {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "noopTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.NOOPTRACER);
 
             c = SpringApplication.run(BenchmarkBilling.class);
             invoiceTracedService =  c.getBean(TracedInvoiceService.class);
@@ -93,7 +105,7 @@ public class BenchmarkBilling {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "mockTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.MOCKTRACER);
 
             c = SpringApplication.run(BenchmarkBilling.class);
             invoiceTracedService =  c.getBean(TracedInvoiceService.class);
@@ -105,7 +117,7 @@ public class BenchmarkBilling {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "haystackTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.HAYSTACKTRACER);
 
             c = SpringApplication.run(BenchmarkBilling.class);
             invoiceTracedService =  c.getBean(TracedInvoiceService.class);

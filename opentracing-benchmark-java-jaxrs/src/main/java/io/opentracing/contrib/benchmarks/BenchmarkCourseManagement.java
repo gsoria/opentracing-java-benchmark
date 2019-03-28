@@ -1,18 +1,28 @@
 package io.opentracing.contrib.benchmarks;
 
 import com.autentia.training.course.CourseManagementApplication;
+import com.autentia.training.course.config.TracerImplementation;
 import com.autentia.training.course.resources.CourseResource;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.openjdk.jmh.annotations.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.AbstractEnvironment;
 
-import javax.ws.rs.core.Response;
-
 public class BenchmarkCourseManagement {
 
-    public Response getAllCourses(StateVariables state) {
-        return state.course.getAll();
+    public static final String HOST = "localhost";
+    public static final String PORT = "8080";
+
+    public String getAllCourses(StateVariables state)  {
+        String r = null;
+        try {
+            r = Unirest.get("http://" + HOST + ":" + PORT + "/rest/course/").asString().getBody();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return r;
     }
 
     @State(Scope.Benchmark)
@@ -42,7 +52,7 @@ public class BenchmarkCourseManagement {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "jaegerTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.JAEGERTRACER);
             initApplication();
         }
     }
@@ -51,7 +61,7 @@ public class BenchmarkCourseManagement {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "noopTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.NOOPTRACER);
             initApplication();
         }
     }
@@ -60,7 +70,7 @@ public class BenchmarkCourseManagement {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "haystackTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.HAYSTACKTRACER);
             initApplication();
         }
     }

@@ -9,7 +9,7 @@ public class BenchmarkBillingSampleTime extends BenchmarkBilling {
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public Invoice benchmarkBillingNotInstrumented(StateVariables state) {
+    public Invoice benchmarkBillingNotInstrumented(StateVariablesNotInstrumented state) {
         return doBenchmarkBillingNotInstrumented(state);
     }
 

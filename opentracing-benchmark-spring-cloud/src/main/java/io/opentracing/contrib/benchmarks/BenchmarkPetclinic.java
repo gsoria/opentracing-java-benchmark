@@ -6,16 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.samples.petclinic.PetClinicApplication;
+import org.springframework.samples.petclinic.config.TracerImplementation;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.PetController;
-
-import java.io.File;
-import java.io.IOException;
 
 @SpringBootApplication(scanBasePackages = "org.springframework.samples.petclinic.*")
 public class BenchmarkPetclinic {
 
-    public Owner findPetById(StateVariables state) {
+    public Owner findPetByOwnerId(StateVariables state) {
         return state.petcontroller.findOwner(1);
     }
 
@@ -23,17 +21,6 @@ public class BenchmarkPetclinic {
     public static class StateVariables {
         public PetController petcontroller;
         public ConfigurableApplicationContext c;
-
-        @Setup(Level.Trial)
-        public void initMysql() throws IOException {
-            System.out.println("Init mysql");
-            //docker run -e MYSQL_ROOT_PASSWORD=petclinic -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:5.7.8
-            ProcessBuilder pb = new ProcessBuilder("docker", "run", "-e",
-                    "MYSQL_ROOT_PASSWORD=petclinic", "-e", "MYSQL_DATABASE" +
-                    "=petclinic", "-p", "3306:3306", "mysql:5.7.8");
-            pb.directory(new File("."));
-            Process p = pb.start();
-        }
 
         @TearDown(Level.Iteration)
         public void shutdownContext() {
@@ -49,6 +36,7 @@ public class BenchmarkPetclinic {
     public static class StateVariablesNotInstrumented extends StateVariables {
         @Setup(Level.Iteration)
         public void doSetup() {
+            System.setProperty("tracerresolver.disabled", Boolean.TRUE.toString());
             initApplication();
         }
     }
@@ -57,7 +45,7 @@ public class BenchmarkPetclinic {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "jaegerTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.JAEGERTRACER);
             initApplication();
         }
     }
@@ -66,7 +54,7 @@ public class BenchmarkPetclinic {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "noopTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.NOOPTRACER);
             initApplication();
         }
     }
@@ -75,7 +63,7 @@ public class BenchmarkPetclinic {
         @Setup(Level.Iteration)
         public void doSetup() {
 
-            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "haystackTracer");
+            System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, TracerImplementation.HAYSTACKTRACER);
             initApplication();
         }
     }

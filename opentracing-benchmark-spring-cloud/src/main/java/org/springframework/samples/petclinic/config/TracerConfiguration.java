@@ -15,19 +15,19 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class TracerConfiguration {
 
-    @Profile("noopTracer")
+    @Profile(TracerImplementation.NOOPTRACER)
     @Bean
     public Tracer createNoopTracer() {
         return NoopTracerFactory.create();
     }
 
-    @Profile("mockTracer")
+    @Profile(TracerImplementation.MOCKTRACER)
     @Bean
-    public Tracer creatMockTracer() {
+    public Tracer createMockTracer() {
         return new MockTracer();
     }
 
-    @Profile("jaegerTracer")
+    @Profile(TracerImplementation.JAEGERTRACER)
     @Bean
     public Tracer createJaegerTracer() {
         io.jaegertracing.Configuration.SamplerConfiguration samplerConfig =
@@ -49,7 +49,7 @@ public class TracerConfiguration {
         return tracer;
     }
 
-    @Profile("haystackTracer")
+    @Profile(TracerImplementation.HAYSTACKTRACER)
     @Bean
     public Tracer createHaystackTracer() {
         MetricsRegistry metrics = new NoopMetricsRegistry();

@@ -33,7 +33,7 @@
             Jaeger version
           -->
 		<jaeger.version>0.31.0</jaeger.version>
-		<haystack.version>0.2.3</haystack.version>
+		<haystack.version>0.2.5</haystack.version>
 	</properties>
 	<dependencies>
 		<dependency>

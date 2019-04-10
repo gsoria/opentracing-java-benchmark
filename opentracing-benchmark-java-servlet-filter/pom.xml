@@ -19,7 +19,7 @@
         <!-- Dependencies versions -->
         <opentracing.version>0.31.0</opentracing.version>
         <opentracing.java.servlet.filter.version>0.2.2</opentracing.java.servlet.filter.version>
-        <haystack.version>0.2.3</haystack.version>
+        <haystack.version>0.2.5</haystack.version>
         <jmh.version>1.21</jmh.version>
         <jaeger.version>0.31.0</jaeger.version>
         <undertow.version>2.0.17.Final</undertow.version>

@@ -79,9 +79,8 @@
         <!--
             Haystack
           -->
-        <haystack.version>0.2.3</haystack.version>
+        <haystack.version>0.2.5</haystack.version>
     </properties>
-
     <build>
         <plugins>
             <plugin>

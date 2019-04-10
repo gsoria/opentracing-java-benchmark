@@ -1,0 +1,254 @@
+[
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "io.opentracing.contrib.benchmarks.BenchmarkSimpleServletAB.testABSimpleRequest",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-server",
+            "-Xms2048m",
+            "-Xmx2048m"
+        ],
+        "jdkVersion" : "1.8.0_151",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "25.151-b12",
+        "warmupIterations" : 1,
+        "warmupTime" : "single-shot",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 1,
+        "measurementTime" : "single-shot",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 105.22147281,
+            "scoreError" : "NaN",
+            "scoreConfidence" : [
+                "NaN",
+                "NaN"
+            ],
+            "scorePercentiles" : {
+                "0.0" : 105.22147281,
+                "50.0" : 105.22147281,
+                "90.0" : 105.22147281,
+                "95.0" : 105.22147281,
+                "99.0" : 105.22147281,
+                "99.9" : 105.22147281,
+                "99.99" : 105.22147281,
+                "99.999" : 105.22147281,
+                "99.9999" : 105.22147281,
+                "100.0" : 105.22147281
+            },
+            "scoreUnit" : "s/op",
+            "rawData" : [
+                [
+                    105.22147281
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "io.opentracing.contrib.benchmarks.BenchmarkSimpleServletAB.testABSimpleRequestHaystackWithoutMetricFilters",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-server",
+            "-Xms2048m",
+            "-Xmx2048m"
+        ],
+        "jdkVersion" : "1.8.0_151",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "25.151-b12",
+        "warmupIterations" : 1,
+        "warmupTime" : "single-shot",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 1,
+        "measurementTime" : "single-shot",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 101.553929134,
+            "scoreError" : "NaN",
+            "scoreConfidence" : [
+                "NaN",
+                "NaN"
+            ],
+            "scorePercentiles" : {
+                "0.0" : 101.553929134,
+                "50.0" : 101.553929134,
+                "90.0" : 101.553929134,
+                "95.0" : 101.553929134,
+                "99.0" : 101.553929134,
+                "99.9" : 101.553929134,
+                "99.99" : 101.553929134,
+                "99.999" : 101.553929134,
+                "99.9999" : 101.553929134,
+                "100.0" : 101.553929134
+            },
+            "scoreUnit" : "s/op",
+            "rawData" : [
+                [
+                    101.553929134
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "io.opentracing.contrib.benchmarks.BenchmarkSimpleServletAB.testABSimpleRequestJaegerWithoutMetricFilters",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-server",
+            "-Xms2048m",
+            "-Xmx2048m"
+        ],
+        "jdkVersion" : "1.8.0_151",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "25.151-b12",
+        "warmupIterations" : 1,
+        "warmupTime" : "single-shot",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 1,
+        "measurementTime" : "single-shot",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 97.147411952,
+            "scoreError" : "NaN",
+            "scoreConfidence" : [
+                "NaN",
+                "NaN"
+            ],
+            "scorePercentiles" : {
+                "0.0" : 97.147411952,
+                "50.0" : 97.147411952,
+                "90.0" : 97.147411952,
+                "95.0" : 97.147411952,
+                "99.0" : 97.147411952,
+                "99.9" : 97.147411952,
+                "99.99" : 97.147411952,
+                "99.999" : 97.147411952,
+                "99.9999" : 97.147411952,
+                "100.0" : 97.147411952
+            },
+            "scoreUnit" : "s/op",
+            "rawData" : [
+                [
+                    97.147411952
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "io.opentracing.contrib.benchmarks.BenchmarkSimpleServletAB.testABSimpleRequestMocktracerWithoutMetricFilters",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-server",
+            "-Xms2048m",
+            "-Xmx2048m"
+        ],
+        "jdkVersion" : "1.8.0_151",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "25.151-b12",
+        "warmupIterations" : 1,
+        "warmupTime" : "single-shot",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 1,
+        "measurementTime" : "single-shot",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 99.652808589,
+            "scoreError" : "NaN",
+            "scoreConfidence" : [
+                "NaN",
+                "NaN"
+            ],
+            "scorePercentiles" : {
+                "0.0" : 99.652808589,
+                "50.0" : 99.652808589,
+                "90.0" : 99.652808589,
+                "95.0" : 99.652808589,
+                "99.0" : 99.652808589,
+                "99.9" : 99.652808589,
+                "99.99" : 99.652808589,
+                "99.999" : 99.652808589,
+                "99.9999" : 99.652808589,
+                "100.0" : 99.652808589
+            },
+            "scoreUnit" : "s/op",
+            "rawData" : [
+                [
+                    99.652808589
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "io.opentracing.contrib.benchmarks.BenchmarkSimpleServletAB.testABSimpleRequestNooptracerWithoutMetricFilters",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-server",
+            "-Xms2048m",
+            "-Xmx2048m"
+        ],
+        "jdkVersion" : "1.8.0_151",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "25.151-b12",
+        "warmupIterations" : 1,
+        "warmupTime" : "single-shot",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 1,
+        "measurementTime" : "single-shot",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 96.599313964,
+            "scoreError" : "NaN",
+            "scoreConfidence" : [
+                "NaN",
+                "NaN"
+            ],
+            "scorePercentiles" : {
+                "0.0" : 96.599313964,
+                "50.0" : 96.599313964,
+                "90.0" : 96.599313964,
+                "95.0" : 96.599313964,
+                "99.0" : 96.599313964,
+                "99.9" : 96.599313964,
+                "99.99" : 96.599313964,
+                "99.999" : 96.599313964,
+                "99.9999" : 96.599313964,
+                "100.0" : 96.599313964
+            },
+            "scoreUnit" : "s/op",
+            "rawData" : [
+                [
+                    96.599313964
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+

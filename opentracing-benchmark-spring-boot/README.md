@@ -1,6 +1,6 @@
 # Latest results
 
-The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-04-07-13-31-21.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-04-07-13-45-48.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-04-07-14-00-29.json&topBar=Opentracing%20spring%20boot).
+The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-09-59-10.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-10-23-28.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-10-47-50.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-11-12-03.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-11-36-19.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-12-00-46.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-12-25-15.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-12-49-30.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-13-13-28.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-13-37-29.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-boot/results/jmh-2019-05-03-15-27-06.json&topBar=Opentracing%20spring%20boot).
 These graphics are constructed based on raw results located in the ``results`` folder.
 
 ## Description
@@ -77,18 +77,18 @@ And for the different tracer implementations these dependencies:
 - X axis: represents each execution result.
 - Y axis: represents how long time it takes for the benchmark method to execute.
 
-![BenchmarkBillingSampleTime-3](results-imgs/BenchmarkBillingSampleTime.3.png)
+![BenchmarkBillingSampleTime-5](results-imgs/BenchmarkBillingSampleTime.5.png)
 
-![BenchmarkBillingSampleTime-4](results-imgs/BenchmarkBillingSampleTime.4.png)
+![BenchmarkBillingSampleTime-6](results-imgs/BenchmarkBillingSampleTime.6.png)
 
 ## Throughput metrics
 
 - X axis: represents each execution result.
 - Y axis: represents of number of operations per second  (the number of times per second the benchmark method could be executed).
 
-![BenchmarkBillingThroughput-3](results-imgs/BenchmarkBillingThroughput.3.png)
+![BenchmarkBillingThroughput-5](results-imgs/BenchmarkBillingThroughput.5.png)
 
-![BenchmarkBillingThroughput-4](results-imgs/BenchmarkBillingThroughput.4.png)
+![BenchmarkBillingThroughput-6](results-imgs/BenchmarkBillingThroughput.6.png)
 
 ## Previous results
 The previous results are located [here](results-md/previous.md).

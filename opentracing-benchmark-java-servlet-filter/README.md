@@ -1,6 +1,6 @@
 # Latest results
 
-The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-04-10-19-44-14.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-04-10-20-02-27.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-04-10-20-14-22.json&topBar=Opentracing%20java%20servlet%20filter).
+The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-10-27-56.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-11-44-25.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-12-45-24.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-13-50-17.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-14-51-20.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-15-52-25.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-16-53-35.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-17-54-38.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-19-35-13.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-servlet-filter/results/jmh-2019-05-04-20-36-18.json&topBar=Opentracing%20java%20servlet%20filter).
 These graphics are constructed based on raw results located in the ``results`` folder.
 
 ## Description
@@ -65,18 +65,18 @@ And for the different tracer implementations these dependencies:
 - X axis: represents each execution result.
 - Y axis: represents how long time it takes for the benchmark method to execute.
 
-![BenchmarkSimpleServletSampleTime-3](results-imgs/BenchmarkSimpleServletSampleTime.3.png)
+![BenchmarkSimpleServletSampleTime-5](results-imgs/BenchmarkSimpleServletSampleTime.5.png)
 
-![BenchmarkSimpleServletSampleTime-4](results-imgs/BenchmarkSimpleServletSampleTime.4.png)
+![BenchmarkSimpleServletSampleTime-6](results-imgs/BenchmarkSimpleServletSampleTime.6.png)
 
 ## Throughput metrics
 
 - X axis: represents each execution result.
 - Y axis: represents of number of operations per second  (the number of times per second the benchmark method could be executed).
 
-![BenchmarkSimpleServletThroughput-3](results-imgs/BenchmarkSimpleServletThroughput.3.png)
+![BenchmarkSimpleServletThroughput-5](results-imgs/BenchmarkSimpleServletThroughput.5.png)
 
-![BenchmarkSimpleServletThroughput-4](results-imgs/BenchmarkSimpleServletThroughput.4.png)
+![BenchmarkSimpleServletThroughput-6](results-imgs/BenchmarkSimpleServletThroughput.6.png)
 
 ## Previous results
 The previous results are located [here](results-md/previous.md).

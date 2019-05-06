@@ -17,11 +17,11 @@ The tests are performing the operation calling to the Spring services directly.
 This project uses this [Opentracing dependency](https://github.com/opentracing-contrib/java-spring-cloud):
 
 ```xml
-	<opentracing.spring.cloud.version>0.2.2</opentracing.spring.cloud.version>
+    <opentracing.spring.cloud.version>0.2.2</opentracing.spring.cloud.version>
     <opentracing.version>0.31.0</opentracing.version>
     <jaeger.version>0.31.0</jaeger.version>
     <haystack.version>0.2.5</haystack.version>
-
+    
     <!-- Opentracing-->
     <dependency>
         <groupId>io.opentracing.contrib</groupId>

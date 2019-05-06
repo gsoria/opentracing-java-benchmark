@@ -1,6 +1,6 @@
 # Latest results
 
-The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-04-04-21-05-06.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-04-04-21-35-41.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-04-04-22-37-07.json&topBar=Opentracing%20simple%20java).
+The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-05-03-15-06-13.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-05-02-14-16-33.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-05-02-13-55-17.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-05-02-13-30-48.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-simple-java/results/jmh-2019-05-02-12-18-04.json&topBar=Opentracing%20simple%20java).
 These graphics are constructed based on raw results located in the ``results`` folder.
 
 ## Description
@@ -54,18 +54,18 @@ And for the different tracer implementations these dependencies:
 - X axis: represents each execution result.
 - Y axis: represents how long time it takes for the benchmark method to execute.
 
-![BenchmarkStringConcatenationSampleTime-3](results-imgs/BenchmarkStringConcatenationSampleTime.3.png)
+![BenchmarkStringConcatenationSampleTime-5](results-imgs/BenchmarkStringConcatenationSampleTime.5.png)
 
-![BenchmarkStringConcatenationSampleTime-4](results-imgs/BenchmarkStringConcatenationSampleTime.4.png)
+![BenchmarkStringConcatenationSampleTime-6](results-imgs/BenchmarkStringConcatenationSampleTime.6.png)
 
 ## Throughput metrics
 
 - X axis: represents each execution result.
 - Y axis: represents of number of operations per second  (the number of times per second the benchmark method could be executed).
 
-![BenchmarkStringConcatenationThroughput-3](results-imgs/BenchmarkStringConcatenationThroughput.3.png)
+![BenchmarkStringConcatenationThroughput-5](results-imgs/BenchmarkStringConcatenationThroughput.5.png)
 
-![BenchmarkStringConcatenationThroughput-4](results-imgs/BenchmarkStringConcatenationThroughput.4.png)
+![BenchmarkStringConcatenationThroughput-6](results-imgs/BenchmarkStringConcatenationThroughput.6.png)
 
 ## Previous results
 The previous results are located [here](results-md/previous.md).

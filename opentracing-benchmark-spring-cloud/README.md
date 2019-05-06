@@ -1,6 +1,6 @@
 # Latest results
 
-The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-04-07-14-56-15.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-04-07-15-18-35.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-04-07-15-40-51.json&topBar=Opentracing%20spring%20cloud).
+The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-00-08-35.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-00-37-27.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-01-05-59.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-01-34-26.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-02-02-50.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-02-31-21.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-02-59-54.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-03-28-27.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-03-56-58.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-spring-cloud/results/jmh-2019-05-03-04-25-37.json&topBar=Opentracing%20spring%20cloud).
 These graphics are constructed based on raw results located in the ``results`` folder.
 
 ## Description
@@ -60,18 +60,18 @@ And for the different tracer implementations these dependencies:
 - X axis: represents each execution result.
 - Y axis: represents how long time it takes for the benchmark method to execute.
 
-![BenchmarkPetclinicSampleTime-3](results-imgs/BenchmarkPetclinicSampleTime.3.png)
+![BenchmarkPetclinicSampleTime-5](results-imgs/BenchmarkPetclinicSampleTime.5.png)
 
-![BenchmarkPetclinicSampleTime-4](results-imgs/BenchmarkPetclinicSampleTime.4.png)
+![BenchmarkPetclinicSampleTime-6](results-imgs/BenchmarkPetclinicSampleTime.6.png)
 
 ## Throughput metrics
 
 - X axis: represents each execution result.
 - Y axis: represents of number of operations per second  (the number of times per second the benchmark method could be executed).
 
-![BenchmarkPetclinicThroughput-3](results-imgs/BenchmarkPetclinicThroughput.3.png)
+![BenchmarkPetclinicThroughput-5](results-imgs/BenchmarkPetclinicThroughput.5.png)
 
-![BenchmarkPetclinicThroughput-4](results-imgs/BenchmarkPetclinicThroughput.4.png)
+![BenchmarkPetclinicThroughput-6](results-imgs/BenchmarkPetclinicThroughput.6.png)
 
 ## Previous results
 The previous results are located [here](results-md/previous.md).

@@ -1,6 +1,7 @@
 package io.opentracing.contrib.benchmarks;
 
-import io.opentracing.contrib.billing.config.TracerImplementation;
+import io.opentracing.contrib.benchmarks.billing.BillingApplication;
+import io.opentracing.contrib.benchmarks.config.TracerImplementation;
 import org.junit.After;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
@@ -16,35 +17,35 @@ public class BenchmarkBillingTests {
     @Test
     public void loadSpringContextWithoutInstrumentation() {
         loadSpringContext(null);
-        BenchmarkBilling billing = context.getBean(BenchmarkBilling.class);
+        BillingApplication billing = context.getBean(BillingApplication.class);
         assertNotNull(billing);
     }
 
     @Test
     public void loadSpringContextWithNoopTracer() {
         loadSpringContext(TracerImplementation.NOOPTRACER);
-        BenchmarkBilling billing = context.getBean(BenchmarkBilling.class);
+        BillingApplication billing = context.getBean(BillingApplication.class);
         assertNotNull(billing);
     }
 
     @Test
     public void loadSpringContextWithMockTracer() {
         loadSpringContext(TracerImplementation.MOCKTRACER);
-        BenchmarkBilling billing = context.getBean(BenchmarkBilling.class);
+        BillingApplication billing = context.getBean(BillingApplication.class);
         assertNotNull(billing);
     }
 
     @Test
     public void loadSpringContextWithJaegerTracer() {
         loadSpringContext(TracerImplementation.JAEGERTRACER);
-        BenchmarkBilling billing = context.getBean(BenchmarkBilling.class);
+        BillingApplication billing = context.getBean(BillingApplication.class);
         assertNotNull(billing);
     }
 
     @Test
     public void loadSpringContextWithHaystackTracer() {
         loadSpringContext(TracerImplementation.HAYSTACKTRACER);
-        BenchmarkBilling billing = context.getBean(BenchmarkBilling.class);
+        BillingApplication billing = context.getBean(BillingApplication.class);
         assertNotNull(billing);
     }
 
@@ -57,6 +58,6 @@ public class BenchmarkBillingTests {
         if(profile != null){
             System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, profile);
         }
-        context = SpringApplication.run(BenchmarkBilling.class);
+        context = SpringApplication.run(BillingApplication.class);
     }
 }

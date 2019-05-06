@@ -1,8 +1,8 @@
 package io.opentracing.contrib.benchmarks;
 
-import com.autentia.training.course.CourseManagementApplication;
-import com.autentia.training.course.config.TracerImplementation;
-import com.autentia.training.course.resources.CourseResource;
+import io.opentracing.contrib.benchmarks.course.CourseManagementApplication;
+import io.opentracing.contrib.benchmarks.config.TracerImplementation;
+import io.opentracing.contrib.benchmarks.course.resources.CourseResource;
 import org.junit.After;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +17,7 @@ public class CourseManagementApplicationTests {
 
 	@Test
 	public void loadSpringContextWithoutInstrumentation() {
-		loadSpringContext(TracerImplementation.NOTINSTRUMENTED);
+		loadSpringContext(TracerImplementation.NO_INSTRUMENTATION);
 		CourseResource course = context.getBean(CourseResource.class);
 		assertNotNull(course);
 	}
@@ -39,6 +39,13 @@ public class CourseManagementApplicationTests {
 	@Test
 	public void loadSpringContextWithHaystackTracer() {
 		loadSpringContext(TracerImplementation.HAYSTACKTRACER);
+		CourseResource course = context.getBean(CourseResource.class);
+		assertNotNull(course);
+	}
+
+	@Test
+	public void loadSpringContextWithMockTracer() {
+		loadSpringContext(TracerImplementation.MOCKTRACER);
 		CourseResource course = context.getBean(CourseResource.class);
 		assertNotNull(course);
 	}

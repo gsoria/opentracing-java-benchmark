@@ -1,7 +1,7 @@
 package io.opentracing.contrib.benchmarks;
 
-import com.autentia.training.course.CourseManagementApplication;
-import com.autentia.training.course.resources.CourseResource;
+import io.opentracing.contrib.benchmarks.course.CourseManagementApplication;
+import io.opentracing.contrib.benchmarks.course.resources.CourseResource;
 import org.junit.After;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;

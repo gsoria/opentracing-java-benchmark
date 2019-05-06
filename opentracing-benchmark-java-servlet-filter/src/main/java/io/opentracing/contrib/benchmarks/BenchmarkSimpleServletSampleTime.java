@@ -4,13 +4,12 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 
-public class BenchmarkSimpleServletSampleTime
-        extends BenchmarkSimpleServlet {
+public class BenchmarkSimpleServletSampleTime extends BenchmarkSimpleServletBase {
 
     //Not instrumented
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequest(StateVariablesNotInstrumented state)
+    public String noInstrumentation(StateVariablesNoInstrumentation state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -18,14 +17,7 @@ public class BenchmarkSimpleServletSampleTime
     //Jaeger
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestJaegerWithoutMetricFilter(StateVariablesJaegerWithoutMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestJaegerWithMetricFilter(StateVariablesJaegerWithMetricFilters state)
+    public String jaegerTracer(StateVariablesJaegerWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -33,14 +25,7 @@ public class BenchmarkSimpleServletSampleTime
     //Haystack
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestHaystackWithoutMetricFilter(StateVariablesHaystackWithoutMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestHaystackWithMetricFilter(StateVariablesHaystackWithMetricFilters state)
+    public String haystackTracer(StateVariablesHaystackWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -48,29 +33,15 @@ public class BenchmarkSimpleServletSampleTime
     //Mocktracer
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestMocktracerWithoutMetricFilter(StateVariablesMockTracerWithoutMetricFilters state)
+    public String mockTracer(StateVariablesMockTracerWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
 
+   //Nooptracer
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestMocktracerWithMetricFilter(StateVariablesMockTracerWithMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    //Nooptracer
-    @Benchmark
-    @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestNooptracerWithoutMetricFilter(StateVariablesNoopTracerWithoutMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.SampleTime)
-    public String testSimpleRequestNooptracerWithMetricFilter(StateVariablesNoopTracerWithMetricFilters state)
+    public String noopTracer(StateVariablesNoopTracerWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }

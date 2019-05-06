@@ -15,8 +15,8 @@ public class Main {
 
         Options opt = new OptionsBuilder()
                 .include(".*Benchmark")
-                .warmupIterations(1)
-                .measurementIterations(1)
+                .warmupIterations(5)
+                .measurementIterations(5)
                 .forks(1)
                 .threads(1)
                 .resultFormat(resultsFileOutputType)

@@ -4,35 +4,35 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 
-public class BenchmarkStringConcatenationThroughput extends BenchmarkStringConcatenation {
+public class BenchmarkStringConcatenationThroughput extends BenchmarkStringConcatenationBase {
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String testNoInstrumentation(StateVariables state) {
+    public String noInstrumentation(StateVariables state) {
         return doNoInstrumentation(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public void testNoopTracer(StateVariables state) {
-        doNoopTracer(state);
+    public String noopTracer(StateVariables state) {
+        return doNoopTracer(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public void testMockTracer(StateVariables state) {
-        doMockTracer(state);
+    public String mockTracer(StateVariables state) {
+        return doMockTracer(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public void testJaegerTracer(StateVariables state) {
-        doJaegerTracer(state);
+    public String jaegerTracer(StateVariables state) {
+        return doJaegerTracer(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public void testHaystackTracer(StateVariables state) {
-        doHaystackTracer(state);
+    public String haystackTracer(StateVariables state) {
+        return doHaystackTracer(state);
     }
 }

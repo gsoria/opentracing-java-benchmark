@@ -4,29 +4,35 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 
-public class BenchmarkCourseManagementThroughput extends BenchmarkCourseManagement {
+public class BenchmarkCourseManagementThroughput extends BenchmarkCourseManagementBase {
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String benchmarkCourseNotInstrumented(BenchmarkCourseManagement.StateVariablesNotInstrumented state) {
+    public String noInstrumentation(StateVariablesNotInstrumented state) {
         return getAllCourses(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String benchmarkCourseNoopTracer(BenchmarkCourseManagement.StateVariablesNoopTracer state) {
+    public String noopTracer(StateVariablesNoopTracer state) {
         return getAllCourses(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String benchmarkCourseJaegerTracer(BenchmarkCourseManagement.StateVariablesJaeger state) {
+    public String jaegerTracer(StateVariablesJaeger state) {
         return getAllCourses(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String benchmarkCourseHaystackTracer(BenchmarkCourseManagement.StateVariablesHaystack state) {
+    public String haystackTracer(StateVariablesHaystack state) {
+        return getAllCourses(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.Throughput)
+    public String mockTracer(StateVariablesMockTracer state) {
         return getAllCourses(state);
     }
 }

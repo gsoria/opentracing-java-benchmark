@@ -6,29 +6,35 @@ import org.openjdk.jmh.annotations.Mode;
 
 import javax.ws.rs.core.Response;
 
-public class BenchmarkCourseManagementSampleTime extends BenchmarkCourseManagement {
+public class BenchmarkCourseManagementSampleTime extends BenchmarkCourseManagementBase {
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public Response benchmarkCourseNotInstrumented(StateVariablesNotInstrumented state) {
+    public Response noInstrumentation(StateVariablesNotInstrumented state) {
         return getAllCourses(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public Response benchmarkCourseNoopTracer(StateVariablesNoopTracer state) {
+    public Response noopTracer(StateVariablesNoopTracer state) {
         return getAllCourses(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public Response benchmarkCourseJaegerTracer(StateVariablesJaeger state) {
+    public Response jaegerTracer(StateVariablesJaeger state) {
         return getAllCourses(state);
     }
 
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
-    public Response benchmarkCourseHaystackTracer(StateVariablesHaystack state) {
+    public Response haystackTracer(StateVariablesHaystack state) {
+        return getAllCourses(state);
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    public Response mockTracer(StateVariablesMockTracer state) {
         return getAllCourses(state);
     }
 }

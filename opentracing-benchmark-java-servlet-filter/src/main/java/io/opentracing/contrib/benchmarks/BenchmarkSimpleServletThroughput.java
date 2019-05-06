@@ -4,12 +4,12 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 
-public class BenchmarkSimpleServletThroughput extends BenchmarkSimpleServlet {
+public class BenchmarkSimpleServletThroughput extends BenchmarkSimpleServletBase {
 
     //Not instrumented
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequest(StateVariablesNotInstrumented state)
+    public String noInstrumentation(StateVariablesNoInstrumentation state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -17,14 +17,7 @@ public class BenchmarkSimpleServletThroughput extends BenchmarkSimpleServlet {
     //Jaeger
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestJaegerWithoutMetricFilter(StateVariablesJaegerWithoutMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestJaegerWithMetricFilter(StateVariablesJaegerWithMetricFilters state)
+    public String jaegerTracer(StateVariablesJaegerWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -32,14 +25,7 @@ public class BenchmarkSimpleServletThroughput extends BenchmarkSimpleServlet {
     //Haystack
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestHaystackWithoutMetricFilter(StateVariablesHaystackWithoutMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestHaystackWithMetricFilter(StateVariablesHaystackWithMetricFilters state)
+    public String haystackTracer(StateVariablesHaystackWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -47,14 +33,7 @@ public class BenchmarkSimpleServletThroughput extends BenchmarkSimpleServlet {
     //Mocktracer
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestMocktracerWithoutMetricFilter(StateVariablesMockTracerWithoutMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestMocktracerWithMetricFilter(StateVariablesMockTracerWithMetricFilters state)
+    public String mockTracer(StateVariablesMockTracerWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
@@ -62,15 +41,9 @@ public class BenchmarkSimpleServletThroughput extends BenchmarkSimpleServlet {
     //Nooptracer
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestNooptracerWithoutMetricFilter(StateVariablesNoopTracerWithoutMetricFilters state)
+    public String noopTracer(StateVariablesNoopTracerWithoutMetricFilters state)
             throws Exception {
         return super.testSimpleRequest(state);
     }
 
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    public String testSimpleRequestNooptracerWithMetricFilter(StateVariablesNoopTracerWithMetricFilters state)
-            throws Exception {
-        return super.testSimpleRequest(state);
-    }
 }

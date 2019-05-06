@@ -1,6 +1,6 @@
 # Latest results
 
-The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-04-07-16-04-45.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-04-07-16-20-31.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-04-07-16-36-17.json&topBar=Opentracing%20java%20jax-rs).
+The latest results are located [here](http://jmh.morethan.io/?sources=https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-01-06-28.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-01-26-19.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-01-46-08.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-02-05-57.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-02-25-44.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-02-45-32.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-03-05-19.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-03-25-07.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-03-44-54.json,https://raw.githubusercontent.com/gsoria/opentracing-java-benchmark/master/opentracing-benchmark-java-jaxrs/results/jmh-2019-05-05-04-04-41.json&topBar=Opentracing%20java%20jax-rs).
 These graphics are constructed based on raw results located in the ``results`` folder.
 
 ## Description
@@ -68,18 +68,18 @@ And for the different tracer implementations these dependencies:
 - X axis: represents each execution result.
 - Y axis: represents how long time it takes for the benchmark method to execute.
 
-![BenchmarkPetclinicSampleTime-3](results-imgs/BenchmarkCourseManagementSampleTime.3.png)
+![BenchmarkPetclinicSampleTime-5](results-imgs/BenchmarkCourseManagementSampleTime.5.png)
 
-![BenchmarkPetclinicSampleTime-4](results-imgs/BenchmarkCourseManagementSampleTime.4.png)
+![BenchmarkPetclinicSampleTime-6](results-imgs/BenchmarkCourseManagementSampleTime.6.png)
 
 ## Throughput metrics
 
 - X axis: represents each execution result.
 - Y axis: represents of number of operations per second  (the number of times per second the benchmark method could be executed).
 
-![BenchmarkCourseManagementThroughput-3](results-imgs/BenchmarkCourseManagementThroughput.3.png)
+![BenchmarkCourseManagementThroughput-5](results-imgs/BenchmarkCourseManagementThroughput.5.png)
 
-![BenchmarkCourseManagementThroughput-4](results-imgs/BenchmarkCourseManagementThroughput.4.png)
+![BenchmarkCourseManagementThroughput-6](results-imgs/BenchmarkCourseManagementThroughput.6.png)
 
 ## Previous results
 The previous results are located [here](results-md/previous.md).
